@@ -34,17 +34,17 @@ export default function Home() {
           <MeshGradientBackground />
           <div className="flex flex-col p-10 h-full w-full absolute">
             <Input
-              className="flex mb-4 backdrop-blur-md bg-white/20 shadow-none border-none"
+              className="flex mb-4 backdrop-blur-lg bg-gray-400/10 hover:bg-gray-400/20 focus:bg-gray-400/20 transition duration-300 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
               placeholder="Title (for eg: Caleb & Ava)"
             />
             <Input
-              className="flex mb-4 backdrop-blur-md bg-white/20 shadow-none border-none"
+              className="flex mb-4 backdrop-blur-lg bg-gray-400/10 hover:bg-gray-400/20 focus:bg-gray-400/20 transition duration-300 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
               placeholder="Date"
             />
             <Textarea
               value={wordsList}
               onChange={handleInputChange}
-              className="flex h-[20rem] mb-4 backdrop-blur-md bg-white/20 shadow-none border-none"
+              className="h-[20rem] flex mb-4 backdrop-blur-lg bg-gray-400/10 hover:bg-gray-400/20 focus:bg-gray-400/20 transition duration-300 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
               placeholder="Enter the words (one per line)"
             />
           </div>
