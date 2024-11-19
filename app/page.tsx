@@ -65,9 +65,8 @@ export default function Home() {
                   className={`marker:text-gray-500 list-disc marker:font-bold space-y-2`}
                 >
                   <li>Easy-to-use word search puzzle maker</li>
-                  <li>100+ questions to help you come up with words</li>
-                  <li>5+ illustrations</li>
-                  <li>Choose between A4/A5 paper sizes</li>
+                  <li>50+ questions to help you come up with words</li>
+                  <li>Choose between A4/A5/Letter paper sizes</li>
                   <li>High-quality PDF download</li>
                   <li>100% secure (your data is never stored with us)</li>
                   <li>
