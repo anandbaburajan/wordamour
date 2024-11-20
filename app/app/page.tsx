@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/sheet";
 import { Toaster } from "@/components/ui/sonner";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import WordSearch from "@blex41/word-search";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
@@ -80,7 +81,7 @@ export default function Home() {
       // margin is in MM, default is Margin.NONE = 0
       margin: Margin.SMALL,
       // default is 'A4'
-      format: "A4",
+      format: paperSize,
       // default is 'portrait'
       orientation: "portrait",
     },
@@ -155,7 +156,7 @@ export default function Home() {
               <SelectContent>
                 <SelectItem value="A4">A4 (8.27" x 11.69")</SelectItem>
                 <SelectItem value="A5">A5 (5.83" x 8.27")</SelectItem>
-                <SelectItem value="Letter">Letter (8.5" x 11")</SelectItem>
+                <SelectItem value="letter">Letter (8.5" x 11")</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -231,7 +232,14 @@ export default function Home() {
           <div className="flex flex-col h-screen p-10 relative">
             <div className="absolute right-10 flex flex-col space-y-2">
               <Button
-                onClick={() => generatePDF(getTargetElement, options)}
+                onClick={() => {
+                  if (!paperSize) {
+                    toast.info("Please set a paper size.");
+                    return;
+                  }
+
+                  generatePDF(getTargetElement, options);
+                }}
                 className={`${
                   wordSearchObj ? "" : "invisible"
                 } items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-black hover:to-black h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white`}
@@ -302,10 +310,15 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="flex flex-col p-10 relative w-[210mm] min-h-[594mm] justify-center items-center bg-white"
+            className={cn(
+              "flex flex-col bg-white",
+              paperSize === "A4" && "w-[210mm] min-h-[594mm]",
+              paperSize === "A5" && "w-[148mm] min-h-[420mm]",
+              paperSize === "letter" && "w-[215.9mm] min-h-[558.8mm]"
+            )}
             id="content-id"
           >
-            <div className="flex justify-center w-full h-full bg-white flex-col items-center">
+            <div className="flex justify-center w-full h-1/2 bg-white flex-col items-center">
               <div className="flex justify-center mb-8">
                 <h1 className={`text-5xl ${instrumentSerif.className}`}>
                   {title || "Untitled"}
@@ -317,14 +330,28 @@ export default function Home() {
                 </h6>
               </div>
               <div className="flex justify-center">
-                <table className="text-sm">
+                <table
+                  className={cn(
+                    paperSize === "A4" && "text-sm",
+                    paperSize === "letter" && "text-sm",
+                    paperSize === "A5" && "text-xs"
+                  )}
+                >
                   <tbody>
                     {wordSearchObj &&
                       wordSearchObj.grid.length > 0 &&
                       wordSearchObj.grid.map((row, rowIndex) => (
                         <tr key={rowIndex}>
                           {row.map((cell, cellIndex) => (
-                            <td key={cellIndex} className="p-2 text-gray-900">
+                            <td
+                              key={cellIndex}
+                              className={cn(
+                                "text-gray-900",
+                                paperSize === "A4" && "p-2",
+                                paperSize === "letter" && "p-2",
+                                paperSize === "A5" && "p-1.5"
+                              )}
+                            >
                               {cell}
                             </td>
                           ))}
@@ -334,7 +361,7 @@ export default function Home() {
                 </table>
               </div>
             </div>
-            <div className="flex justify-center w-full h-full bg-white flex-col items-center">
+            <div className="flex justify-center w-full h-1/2 bg-white flex-col items-center">
               <div className="flex justify-center mb-8">
                 <h1 className={`text-5xl ${instrumentSerif.className}`}>
                   {title || "Untitled"}
@@ -346,7 +373,13 @@ export default function Home() {
                 </h6>
               </div>
               <div className="flex justify-center">
-                <table className="text-sm">
+                <table
+                  className={cn(
+                    paperSize === "A4" && "text-sm",
+                    paperSize === "letter" && "text-sm",
+                    paperSize === "A5" && "text-xs"
+                  )}
+                >
                   <tbody>
                     {wordSearchObj &&
                       wordSearchObj.grid.length > 0 &&
@@ -355,15 +388,17 @@ export default function Home() {
                           {row.map((cell, cellIndex) => (
                             <td
                               key={cellIndex}
-                              className={`${
+                              className={cn(
+                                "text-gray-900",
                                 uniqueCoords.some(
                                   (coord) =>
                                     coord.x === cellIndex &&
                                     coord.y === rowIndex
-                                )
-                                  ? "bg-lime-300/50"
-                                  : ""
-                              } p-2 text-gray-900`}
+                                ) && "bg-lime-300/50",
+                                paperSize === "A4" && "p-2",
+                                paperSize === "letter" && "p-2",
+                                paperSize === "A5" && "p-1.5"
+                              )}
                             >
                               {cell}
                             </td>
