@@ -31,14 +31,14 @@ import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
 import dayjs from "dayjs";
 import { ArrowRight, Eye, EyeOff, Printer, Shuffle } from "lucide-react";
-import { Playfair_Display } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
-// If loading a variable font, you don't need to specify the font weight
-const playfair = Playfair_Display({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   display: "swap",
+  weight: ["400"],
 });
 
 export default function Home() {
@@ -126,7 +126,7 @@ export default function Home() {
               placeholder="Words (one per line)"
             />
             <Button
-              className="mb-10 bg-[#008A00] p-2.5 w-fit shadow-none text-white"
+              className="mb-10 bg-[#008A00] h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
                 if (wordsList.split(/\r?\n/).length > 32) {
                   toast.info("Only 32 words are allowed.");
@@ -153,7 +153,7 @@ export default function Home() {
                 setUniqueCoords(getUniqueCoordinates(ws.words));
               }}
             >
-              <Shuffle className="h-4 w-4" strokeWidth={2} />
+              <Shuffle className="h-3 w-3" strokeWidth={2} />
             </Button>
             <Sheet modal={false}>
               <SheetTrigger>
@@ -171,9 +171,9 @@ export default function Home() {
                 className="min-w-[calc(75vw)] p-10"
               >
                 <SheetHeader>
-                  <SheetTitle>50+ example questions for inspiration</SheetTitle>
+                  <SheetTitle>Example questions for inspiration</SheetTitle>
                   <SheetDescription>
-                    <ol className="marker:text-gray-500 ml-4 mt-4 list-decimal marker:font-bold space-y-2 text-black font-medium text-sm">
+                    <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black font-medium text-base">
                       <li>Easy-to-use word search puzzle maker</li>
                       <li>50+ questions to help you come up with words</li>
                       <li>5+ illustrations</li>
@@ -181,7 +181,7 @@ export default function Home() {
                       <li>High-quality PDF download</li>
                       <li>100% secure (your data is never stored with us)</li>
                       <li>100% free (you can if you like!)</li>
-                    </ol>
+                    </ul>
                   </SheetDescription>
                 </SheetHeader>
               </SheetContent>
@@ -194,14 +194,14 @@ export default function Home() {
               onClick={() => {}}
               className={`${
                 wordSearchObj ? "" : "invisible"
-              } items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-black hover:to-black p-2.5 rounded-lg font-medium shadow-none text-white`}
+              } items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-black hover:to-black h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white`}
             >
-              <Printer className="h-5 w-5" strokeWidth={2} />
+              <Printer className="h-3 w-3" strokeWidth={2} />
             </Button>
             <Button
               className={`${
                 wordSearchObj ? "" : "invisible"
-              } items-center bg-gray-600/10 p-2.5 rounded-lg hover:bg-gray-600/20 font-medium transition duration-200 shadow-none text-gray-700`}
+              } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/20 font-medium transition duration-200 shadow-none text-gray-700`}
               onClick={() => {
                 setUniqueCoords(getUniqueCoordinates(wordSearchObj.words));
                 setWordsShown(!wordsShown);
@@ -209,7 +209,7 @@ export default function Home() {
             >
               {!wordsShown && (
                 <>
-                  <Eye className="h-5 w-5" strokeWidth={2} />
+                  <Eye className="h-3 w-3" strokeWidth={2} />
                 </>
               )}
               {wordsShown && (
@@ -221,7 +221,7 @@ export default function Home() {
           </div>
           <div className="flex justify-center w-full h-full flex-col items-center">
             <div className="flex justify-center mb-4">
-              <h1 className={`text-5xl font-medium ${playfair.className}`}>
+              <h1 className={`text-5xl ${instrumentSerif.className}`}>
                 {title || "Untitled"}
               </h1>
             </div>

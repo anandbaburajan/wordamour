@@ -1,13 +1,14 @@
 import MeshGradientBackground from "@/components/gradient";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Playfair_Display } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
-const playfair = Playfair_Display({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   display: "swap",
+  weight: ["400"],
 });
 
 export default function Home() {
@@ -15,13 +16,13 @@ export default function Home() {
     <div className="w-screen h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-5">
       <MeshGradientBackground />
       <div className="flex flex-row justify-between w-full h-[5rem]">
-        <h5 className="font-semibold text-xl text-gray-500">@</h5>
+        <h5 className={`text-lg text-black`}>@ Wordamour</h5>
         <Link
           href="https://www.buymeacoffee.com/anandbaburajan"
           className="h-fit"
         >
           <Button
-            className="bg-gray-600/10 hover:bg-gray-600/20 font-medium text-sm transition duration-200 rounded-2xl shadow-none text-gray-600"
+            className="bg-gray-600/10 hover:bg-gray-600/20 font-medium text-sm transition duration-200 rounded-xl shadow-none text-gray-600"
             size={"sm"}
           >
             Buy me a coffee?
@@ -30,26 +31,21 @@ export default function Home() {
       </div>
       <div className="flex flex-row justify-center items-center h-[calc(100vh-5rem)]">
         <div className="flex flex-col w-[50rem] ml-[11rem] mr-[5rem]">
-          <h5
-            className={`${playfair.className} font-semibold text-3xl text-black/25`}
-          >
-            Wordamour
-          </h5>
           <h1
-            className={`${playfair.className} flex font-semibold text-5xl text-black/70 backdrop-blur-4xl mt-6`}
+            className={`${instrumentSerif.className} text-6xl text-black mt-6`}
           >
             Surprise your <br />
             special someone with
             <br />a personalised puzzle.
           </h1>
-          <h3 className={`flex font-medium text-xl text-black/40 mt-6`}>
+          <h3 className={`flex font-normal text-xl text-black/50 mt-6`}>
             Turn your cherished words into a beautiful, printed word search
             puzzle. Choose sweet nicknames, inside jokes, and treasured memories
             that mean the most to you both. A thoughtful gift that's uniquely
             yours.
           </h3>
           <Link href="/app" className="h-fit mt-6 w-fit">
-            <Button className="flex w-max text-md transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-black hover:to-black">
+            <Button className="flex w-max text-md rounded-xl transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-black hover:to-black">
               Create your Wordamour — it's free
             </Button>
           </Link>
