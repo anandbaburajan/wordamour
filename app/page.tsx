@@ -38,7 +38,7 @@ export default function Home() {
             special someone with
             <br />a personalised puzzle.
           </h1>
-          <h3 className={`flex font-normal text-xl text-black/50 mt-6`}>
+          <h3 className={`flex font-normal text-xl text-black/40 mt-6`}>
             Turn your cherished words into a beautiful, printed word search
             puzzle. Choose sweet nicknames, inside jokes, and treasured memories
             that mean the most to you both. A thoughtful gift that's uniquely
@@ -52,7 +52,7 @@ export default function Home() {
           <div className={`flex mt-16`}>
             <Dialog>
               <DialogTrigger>
-                <span className="font-medium text-md text-black/40 underline cursor-pointer">
+                <span className="font-medium text-md text-black/70 underline cursor-pointer">
                   Features
                 </span>
               </DialogTrigger>

@@ -206,7 +206,7 @@ export default function Home() {
               <SheetContent
                 onPointerDownOutside={(e) => e.preventDefault()}
                 onInteractOutside={(e) => e.preventDefault()}
-                className="min-w-[calc(75vw)] p-10"
+                className="min-w-[calc(100vw-20.6rem)] p-10"
               >
                 <SheetHeader>
                   <SheetTitle>Example questions for inspiration</SheetTitle>
@@ -233,8 +233,18 @@ export default function Home() {
             <div className="absolute right-10 flex flex-col space-y-2">
               <Button
                 onClick={() => {
+                  if (!title) {
+                    toast.info("Please set the title.");
+                    return;
+                  }
+
+                  if (!puzzleDate) {
+                    toast.info("Please set the date for the puzzle.");
+                    return;
+                  }
+
                   if (!paperSize) {
-                    toast.info("Please set a paper size.");
+                    toast.info("Please set the paper size.");
                     return;
                   }
 
@@ -275,37 +285,44 @@ export default function Home() {
               </div>
               <div className="flex justify-center">
                 <h6 className="text-sm mb-16 text-gray-400">
-                  {dayjs(puzzleDate).format("MMM DD, YYYY")}
+                  {puzzleDate
+                    ? dayjs(puzzleDate).format("MMM DD, YYYY")
+                    : "Date"}
                 </h6>
               </div>
               <div className="flex justify-center">
-                <table className="text-sm">
-                  <tbody>
-                    {wordSearchObj &&
-                      wordSearchObj.grid.length > 0 &&
-                      wordSearchObj.grid.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                          {row.map((cell, cellIndex) => (
-                            <td
-                              key={cellIndex}
-                              className={`${
-                                wordsShown &&
-                                uniqueCoords.some(
-                                  (coord) =>
-                                    coord.x === cellIndex &&
-                                    coord.y === rowIndex
-                                )
-                                  ? "bg-lime-300/50"
-                                  : ""
-                              } p-2 text-gray-900`}
-                            >
-                              {cell}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+                {wordSearchObj ? (
+                  <table className="text-sm">
+                    <tbody>
+                      {wordSearchObj.grid.length > 0 &&
+                        wordSearchObj.grid.map((row, rowIndex) => (
+                          <tr key={rowIndex}>
+                            {row.map((cell, cellIndex) => (
+                              <td
+                                key={cellIndex}
+                                className={`${
+                                  wordsShown &&
+                                  uniqueCoords.some(
+                                    (coord) =>
+                                      coord.x === cellIndex &&
+                                      coord.y === rowIndex
+                                  )
+                                    ? "bg-lime-300/50"
+                                    : ""
+                                } p-2 text-gray-900`}
+                              >
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div className="flex items-center justify-center w-[37rem] h-[36rem] border border-gray-200 rounded-lg text-gray-400">
+                    Add some words to generate the puzzle.
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -326,7 +343,9 @@ export default function Home() {
               </div>
               <div className="flex justify-center">
                 <h6 className="text-sm mb-16 text-gray-400">
-                  {dayjs(puzzleDate).format("MMM DD, YYYY")}
+                  {puzzleDate
+                    ? dayjs(puzzleDate).format("MMM DD, YYYY")
+                    : "Date"}
                 </h6>
               </div>
               <div className="flex justify-center">
@@ -369,7 +388,9 @@ export default function Home() {
               </div>
               <div className="flex justify-center">
                 <h6 className="text-sm mb-16 text-gray-400">
-                  {dayjs(puzzleDate).format("MMM DD, YYYY")}
+                  {puzzleDate
+                    ? dayjs(puzzleDate).format("MMM DD, YYYY")
+                    : "Date"}
                 </h6>
               </div>
               <div className="flex justify-center">
