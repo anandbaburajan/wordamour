@@ -169,12 +169,15 @@ export default function Home() {
             <Button
               className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
+                if (wordsList.length === 0) {
+                  toast.info("Please enter some words.");
+                  return;
+                }
+
                 if (wordsList.split(/\r?\n/).length > 32) {
                   toast.info("Only 32 words are allowed.");
                   return;
                 }
-
-                if (wordsList.length === 0) return;
 
                 const options = {
                   cols: 22,
