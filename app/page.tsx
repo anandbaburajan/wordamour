@@ -13,7 +13,7 @@ const instrumentSerif = Instrument_Serif({
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-5">
+    <div className="w-screen h-screen overflow-y-hidden flex flex-col font-[family-name:var(--font-geist-sans)] p-5">
       <MeshGradientBackground />
       <div className="flex flex-row justify-between w-full h-[5rem]">
         <h5 className={`text-lg text-black`}>@ Wordamour</h5>
@@ -22,7 +22,7 @@ export default function Home() {
           className="h-fit"
         >
           <Button
-            className="bg-gray-600/10 hover:bg-gray-600/20 font-medium text-sm transition duration-200 rounded-xl shadow-none text-gray-600"
+            className="bg-gray-600/10 hover:bg-gray-600/15 font-medium text-sm transition duration-200 rounded-xl shadow-none text-gray-600"
             size={"sm"}
           >
             Buy me a coffee?
@@ -38,14 +38,16 @@ export default function Home() {
             special someone with
             <br />a personalised puzzle.
           </h1>
-          <h3 className={`flex font-normal text-xl text-black/40 mt-6`}>
+          <h3
+            className={`flex font-normal text-xl text-black/40 mt-6 w-[40rem]`}
+          >
             Turn your cherished words into a beautiful, printed word search
             puzzle. Choose sweet nicknames, inside jokes, and treasured memories
             that mean the most to you both. A thoughtful gift that's uniquely
             yours.
           </h3>
           <Link href="/app" className="h-fit mt-6 w-fit">
-            <Button className="flex w-max text-md rounded-xl transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-black hover:to-black">
+            <Button className="flex w-max text-md rounded-xl border-t border-[#fff9f9] transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38]">
               Create your Wordamour — it's free
             </Button>
           </Link>
@@ -61,9 +63,8 @@ export default function Home() {
                   className={`marker:text-gray-500 list-disc marker:font-bold space-y-2`}
                 >
                   <li>Easy-to-use word search puzzle maker</li>
-                  <li>50+ questions to help you come up with words</li>
-                  <li>Choose between A4/A5/Letter paper sizes</li>
-                  <li>High-quality PDF download</li>
+                  <li>25+ questions to help you come up with words</li>
+                  <li>High-quality PDF (A4/A5/Letter) download</li>
                   <li>100% secure (your data is never stored with us)</li>
                   <li>
                     100% free (you can{" "}
@@ -86,7 +87,9 @@ export default function Home() {
             className="rounded-lg origin-top-left rotate-12"
             width={500}
             height={0}
-            alt="Demo"
+            alt="Wordamour example"
+            priority={true}
+            unoptimized={true}
           ></Image>
         </div>
       </div>

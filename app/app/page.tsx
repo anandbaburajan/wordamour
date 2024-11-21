@@ -20,7 +20,6 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
-  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
@@ -34,7 +33,7 @@ import dayjs from "dayjs";
 import { Eye, EyeOff, Printer, Shuffle } from "lucide-react";
 import { Instrument_Serif } from "next/font/google";
 import { useRef, useState } from "react";
-import generatePDF, { Margin, Resolution } from "react-to-pdf";
+import generatePDF, { Resolution } from "react-to-pdf";
 import { toast } from "sonner";
 
 const instrumentSerif = Instrument_Serif({
@@ -79,7 +78,7 @@ export default function Home() {
     resolution: Resolution.MEDIUM,
     page: {
       // margin is in MM, default is Margin.NONE = 0
-      margin: Margin.SMALL,
+      margin: 0.05,
       // default is 'A4'
       format: paperSize,
       // default is 'portrait'
@@ -164,11 +163,11 @@ export default function Home() {
             <Textarea
               value={wordsList}
               onChange={handleWordsListChange}
-              className="h-[16rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
+              className="h-[20rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
               placeholder="Words (one per line)"
             />
             <Button
-              className="mb-10 bg-[#008A00] rounded-lg h-4 w-4 p-4 shadow-none text-white"
+              className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
                 if (wordsList.split(/\r?\n/).length > 32) {
                   toast.info("Only 32 words are allowed.");
@@ -206,24 +205,54 @@ export default function Home() {
               <SheetContent
                 onPointerDownOutside={(e) => e.preventDefault()}
                 onInteractOutside={(e) => e.preventDefault()}
-                className="min-w-[calc(100vw-20.6rem)] p-10"
+                className="min-w-[calc(100vw-20.6rem)] p-10 overflow-y-auto"
               >
-                <SheetHeader>
-                  <SheetTitle>Example questions for inspiration</SheetTitle>
-                  <SheetDescription>
-                    <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black font-medium text-base">
-                      <li>Easy-to-use word search puzzle maker</li>
-                      <li>50+ questions to help you come up with words</li>
-                      <li>5+ illustrations</li>
-                      <li>Choose between A4/A5 paper sizes</li>
-                      <li>High-quality PDF download</li>
-                      <li>
-                        What's your son's and/or daughter's name/nickname?
-                      </li>
-                      <li>What's your pet's name?</li>
-                    </ul>
-                  </SheetDescription>
-                </SheetHeader>
+                <SheetTitle>Example questions for inspiration</SheetTitle>
+                <SheetDescription>
+                  <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black font-medium text-base">
+                    <li>Nice adjectives to describe your partner?</li>
+                    <li>Nicknames?</li>
+                    <li>Birth place?</li>
+                    <li>
+                      Words reminding of your partner's adventurous moments?
+                    </li>
+                    <li>Words reminding of your partner's special moments?</li>
+                    <li>
+                      Words reminding of special moments shared by you two?
+                    </li>
+                    <li>
+                      Words reminding of your partner's embarrasing moments?
+                    </li>
+                    <li>Words reminding of your partner's dreams?</li>
+                    <li>Words reminding of your inside jokes?</li>
+                    <li>Go-to drink?</li>
+                    <li>
+                      Where did your partner go for high school or college?
+                    </li>
+                    <li>
+                      Words reminding of your partner's favorite monthly/annual
+                      activies?
+                    </li>
+                    <li>Quirky words your partner uses?</li>
+                    <li>A song you loving jamming together?</li>
+                    <li>Favourite snacks or dishes or street food?</li>
+                    <li>Where did you first meet?</li>
+                    <li>Pet's name?</li>
+                    <li>Kinds of animals they adore?</li>
+                    <li>Son's and/or daughter's name/nickname?</li>
+                    <li>Where did you go or plan to go for honeymoon?</li>
+                    <li>Favorite childhood cartoon character?</li>
+                    <li>Words related to their favourite subject/topic?</li>
+                    <li>First dream job?</li>
+                    <li>Favorite color?</li>
+                    <li>Favorite season?</li>
+                    <li>Favorite sports?</li>
+                    <li>Favorite books/movies/shows/songs/games?</li>
+                    <li>Favorite bands/artists?</li>
+                    <li>Favorite clothing/shoe/tech brands?</li>
+                    <li>Dream car?</li>
+                  </ul>
+                </SheetDescription>
               </SheetContent>
             </Sheet>
           </div>
@@ -252,14 +281,14 @@ export default function Home() {
                 }}
                 className={`${
                   wordSearchObj ? "" : "invisible"
-                } items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-black hover:to-black h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white`}
+                } items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white`}
               >
                 <Printer className="h-3 w-3" strokeWidth={2} />
               </Button>
               <Button
                 className={`${
                   wordSearchObj ? "" : "invisible"
-                } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/20 font-medium transition duration-200 shadow-none text-gray-700`}
+                } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
                 onClick={() => {
                   setUniqueCoords(getUniqueCoordinates(wordSearchObj.words));
                   setWordsShown(!wordsShown);
@@ -320,7 +349,7 @@ export default function Home() {
                   </table>
                 ) : (
                   <div className="flex items-center justify-center w-[37rem] h-[36rem] border border-gray-200 rounded-lg text-gray-400">
-                    Add some words to generate the puzzle.
+                    No words added yet.
                   </div>
                 )}
               </div>
@@ -335,7 +364,14 @@ export default function Home() {
             )}
             id="content-id"
           >
-            <div className="flex justify-center w-full h-1/2 bg-white flex-col items-center">
+            <div
+              className={cn(
+                "flex justify-center w-full h-1/2 bg-white flex-col items-center",
+                paperSize === "A4" && "a4-bg",
+                paperSize === "A5" && "a5-bg",
+                paperSize === "letter" && "letter-bg"
+              )}
+            >
               <div className="flex justify-center mb-8">
                 <h1 className={`text-5xl ${instrumentSerif.className}`}>
                   {title || "Untitled"}
@@ -380,7 +416,14 @@ export default function Home() {
                 </table>
               </div>
             </div>
-            <div className="flex justify-center w-full h-1/2 bg-white flex-col items-center">
+            <div
+              className={cn(
+                "flex justify-center w-full h-1/2 bg-white flex-col items-center",
+                paperSize === "A4" && "a4-bg",
+                paperSize === "A5" && "a5-bg",
+                paperSize === "letter" && "letter-bg"
+              )}
+            >
               <div className="flex justify-center mb-8">
                 <h1 className={`text-5xl ${instrumentSerif.className}`}>
                   {title || "Untitled"}
@@ -415,7 +458,7 @@ export default function Home() {
                                   (coord) =>
                                     coord.x === cellIndex &&
                                     coord.y === rowIndex
-                                ) && "bg-lime-300/50",
+                                ) && "bg-gray-300/50",
                                 paperSize === "A4" && "p-2",
                                 paperSize === "letter" && "p-2",
                                 paperSize === "A5" && "p-1.5"

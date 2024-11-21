@@ -18,8 +18,6 @@ function MeshGradientBackground(props) {
                     radial-gradient(circle at 76% 73%, hsla(81,91%,70%,1) 0px, transparent 50%),
                     radial-gradient(circle at 29% 37%, hsla(166,90%,92%,1) 0px, transparent 50%)`,
         backgroundSize: "150% 150%",
-        filter: "blur(80px)",
-        animation: "moveBackground 10s linear infinite",
       }}
     ></div>
   );
