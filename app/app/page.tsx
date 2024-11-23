@@ -31,7 +31,7 @@ import WordSearch from "@blex41/word-search";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
 import dayjs from "dayjs";
-import { Eye, EyeOff, Printer, Shuffle } from "lucide-react";
+import { Coffee, Download, Eye, EyeOff, Shuffle } from "lucide-react";
 import { Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -281,39 +281,20 @@ export default function Home() {
                       toast.info("Please set the paper size.");
                       return;
                     }
-
-                    generatePDF(getTargetElement, options);
                   }}
                   className="items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white"
                 >
-                  <Printer className="h-3 w-3" strokeWidth={2} />
+                  <Download className="h-3 w-3" strokeWidth={2} />
                 </Button>
               )}
               {title && puzzleDate && paperSize && wordSearchObj && (
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
-                      onClick={() => {
-                        if (!title) {
-                          toast.info("Please set the title.");
-                          return;
-                        }
-
-                        if (!puzzleDate) {
-                          toast.info("Please set the date for the puzzle.");
-                          return;
-                        }
-
-                        if (!paperSize) {
-                          toast.info("Please set the paper size.");
-                          return;
-                        }
-
-                        generatePDF(getTargetElement, options);
-                      }}
+                      onClick={() => generatePDF(getTargetElement, options)}
                       className="items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white"
                     >
-                      <Printer className="h-3 w-3" strokeWidth={2} />
+                      <Download className="h-3 w-3" strokeWidth={2} />
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="p-12 w-auto">
@@ -336,9 +317,13 @@ export default function Home() {
                       face, do consider{" "}
                       <Link
                         href="https://www.buymeacoffee.com/anandbaburajan"
-                        className="underline underline-offset-4"
+                        className="underline underline-offset-4 inline-flex items-center"
                       >
-                        buying me a coffee
+                        buying me a coffee{" "}
+                        <Coffee
+                          className="h-5 w-5 ml-1 text-[#FEDD03]"
+                          strokeWidth={2}
+                        />
                       </Link>
                       !
                     </p>
