@@ -3,6 +3,7 @@
 import MeshGradientBackground from "@/components/gradient";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import {
   Popover,
@@ -32,6 +33,7 @@ import { format } from "date-fns";
 import dayjs from "dayjs";
 import { Eye, EyeOff, Printer, Shuffle } from "lucide-react";
 import { Instrument_Serif } from "next/font/google";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import generatePDF, { Resolution } from "react-to-pdf";
 import { toast } from "sonner";
@@ -104,12 +106,11 @@ export default function Home() {
     },
   };
 
-  // you can use a function to return the target element besides using React refs
   const getTargetElement = () => document.getElementById("content-id");
 
   return (
     <div className="h-screen overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-row h-full">
+      <main className="hidden lg:flex flex-row h-full">
         <div className="flex flex-col justify-between w-[20.6rem] border-gray-200 relative">
           <MeshGradientBackground />
           <div className="flex flex-col p-10 h-full w-full absolute">
@@ -200,8 +201,8 @@ export default function Home() {
               <Shuffle className="h-3 w-3" strokeWidth={2} />
             </Button>
             <Sheet modal={false}>
-              <SheetTrigger>
-                <span className="font-medium text-sm text-black/40 cursor-pointer h-fit flex items-center w-full justify-between underline">
+              <SheetTrigger asChild>
+                <span className="font-medium text-sm text-black/40 cursor-pointer h-fit flex items-center w-full justify-between underline underline-offset-4">
                   See example questions for inspiration
                 </span>
               </SheetTrigger>
@@ -263,31 +264,87 @@ export default function Home() {
         <div className="flex flex-col w-[calc(100vw-20.6rem)] bg-white">
           <div className="flex flex-col h-screen p-10 relative">
             <div className="absolute right-10 flex flex-col space-y-2">
-              <Button
-                onClick={() => {
-                  if (!title) {
-                    toast.info("Please set the title.");
-                    return;
-                  }
+              {wordSearchObj && (!title || !puzzleDate || !paperSize) && (
+                <Button
+                  onClick={() => {
+                    if (!title) {
+                      toast.info("Please set the title.");
+                      return;
+                    }
 
-                  if (!puzzleDate) {
-                    toast.info("Please set the date for the puzzle.");
-                    return;
-                  }
+                    if (!puzzleDate) {
+                      toast.info("Please set the date for the puzzle.");
+                      return;
+                    }
 
-                  if (!paperSize) {
-                    toast.info("Please set the paper size.");
-                    return;
-                  }
+                    if (!paperSize) {
+                      toast.info("Please set the paper size.");
+                      return;
+                    }
 
-                  generatePDF(getTargetElement, options);
-                }}
-                className={`${
-                  wordSearchObj ? "" : "invisible"
-                } items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white`}
-              >
-                <Printer className="h-3 w-3" strokeWidth={2} />
-              </Button>
+                    generatePDF(getTargetElement, options);
+                  }}
+                  className="items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white"
+                >
+                  <Printer className="h-3 w-3" strokeWidth={2} />
+                </Button>
+              )}
+              {title && puzzleDate && paperSize && wordSearchObj && (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button
+                      onClick={() => {
+                        if (!title) {
+                          toast.info("Please set the title.");
+                          return;
+                        }
+
+                        if (!puzzleDate) {
+                          toast.info("Please set the date for the puzzle.");
+                          return;
+                        }
+
+                        if (!paperSize) {
+                          toast.info("Please set the paper size.");
+                          return;
+                        }
+
+                        generatePDF(getTargetElement, options);
+                      }}
+                      className="items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white"
+                    >
+                      <Printer className="h-3 w-3" strokeWidth={2} />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="p-12 w-auto">
+                    <p>Your Wordamour has been downloaded!</p>
+                    <p>
+                      There are two pages to be printed — the first one with the
+                      word search puzzle and the second one with the solutions
+                      (to be shared later). I would highly recommend folding the
+                      first page into an{" "}
+                      <Link
+                        href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
+                        className="underline underline-offset-4"
+                      >
+                        origami heart
+                      </Link>{" "}
+                      for gifting!
+                    </p>
+                    <p>
+                      If Wordamour brings a smile to your special someone's
+                      face, do consider{" "}
+                      <Link
+                        href="https://www.buymeacoffee.com/anandbaburajan"
+                        className="underline underline-offset-4"
+                      >
+                        buying me a coffee
+                      </Link>
+                      !
+                    </p>
+                  </DialogContent>
+                </Dialog>
+              )}
               <Button
                 className={`${
                   wordSearchObj ? "" : "invisible"
