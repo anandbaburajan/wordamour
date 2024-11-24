@@ -1,4 +1,4 @@
-function MeshGradientBackground(props) {
+function MeshGradientBackground() {
   return (
     <div
       style={{

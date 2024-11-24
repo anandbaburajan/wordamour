@@ -27,6 +27,7 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+// @ts-expect-error no types
 import WordSearch from "@blex41/word-search";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
@@ -109,7 +110,7 @@ export default function Home() {
   const getTargetElement = () => document.getElementById("content-id");
 
   return (
-    <div className="h-screen overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
+    <div className="h-[100dvh] overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
       <main className="hidden lg:flex flex-row h-full">
         <div className="flex flex-col justify-between w-[20.6rem] border-gray-200 relative">
           <MeshGradientBackground />
@@ -154,9 +155,13 @@ export default function Home() {
                 <SelectValue placeholder="Paper size" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="A4">A4 (8.27" x 11.69")</SelectItem>
-                <SelectItem value="A5">A5 (5.83" x 8.27")</SelectItem>
-                <SelectItem value="letter">Letter (8.5" x 11")</SelectItem>
+                <SelectItem value="A4">
+                  A4 (8.27&quot; x 11.69&quot;)
+                </SelectItem>
+                <SelectItem value="A5">A5 (5.83&quot; x 8.27&quot;)</SelectItem>
+                <SelectItem value="letter">
+                  Letter (8.5&quot; x 11&quot;)
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -218,32 +223,36 @@ export default function Home() {
                     <li>Nicknames?</li>
                     <li>Birth place?</li>
                     <li>
-                      Words reminding of your partner's adventurous moments?
+                      Words reminding of your partner&apos;s adventurous
+                      moments?
                     </li>
-                    <li>Words reminding of your partner's special moments?</li>
+                    <li>
+                      Words reminding of your partner&apos;s special moments?
+                    </li>
                     <li>
                       Words reminding of special moments shared by you two?
                     </li>
                     <li>
-                      Words reminding of your partner's embarrasing moments?
+                      Words reminding of your partner&apos;s embarrasing
+                      moments?
                     </li>
-                    <li>Words reminding of your partner's dreams?</li>
+                    <li>Words reminding of your partner&apos;s dreams?</li>
                     <li>Words reminding of your inside jokes?</li>
                     <li>Go-to drink?</li>
                     <li>
                       Where did your partner go for high school or college?
                     </li>
                     <li>
-                      Words reminding of your partner's favorite monthly/annual
-                      activies?
+                      Words reminding of your partner&apos;s favorite
+                      monthly/annual activies?
                     </li>
                     <li>Quirky words your partner uses?</li>
                     <li>A song you loving jamming together?</li>
                     <li>Favourite snacks or dishes or street food?</li>
                     <li>Where did you first meet?</li>
-                    <li>Pet's name?</li>
+                    <li>Pet&apos;s name?</li>
                     <li>Kinds of animals they adore?</li>
-                    <li>Son's and/or daughter's name/nickname?</li>
+                    <li>Son&apos;s and/or daughter&apos;s name/nickname?</li>
                     <li>Where did you go or plan to go for honeymoon?</li>
                     <li>Favorite childhood cartoon character?</li>
                     <li>Words related to their favourite subject/topic?</li>
@@ -313,8 +322,8 @@ export default function Home() {
                       for gifting!
                     </p>
                     <p>
-                      If Wordamour brings a smile to your special someone's
-                      face, do consider{" "}
+                      If Wordamour brings a smile to your special someone&apos;s
+                      face, consider{" "}
                       <Link
                         href="https://www.buymeacoffee.com/anandbaburajan"
                         className="underline underline-offset-4 inline-flex items-center"
@@ -521,6 +530,16 @@ export default function Home() {
           </div>
         </div>
         <Toaster />
+      </main>
+      <main className="flex lg:hidden h-full flex-col items-center justify-center w-full p-10 text-center">
+        <MeshGradientBackground />
+        <p className="text-base font-medium">
+          Ouch, that&apos;s a small screen.
+        </p>
+        <p className="mt-5 text-base text-black/50">
+          Wordamour works on laptops and desktops. Please use a device with a
+          larger screen size. You&apos;ll be in for a surprise!
+        </p>
       </main>
     </div>
   );

@@ -17,9 +17,9 @@ export default function Home() {
   return (
     <div className="w-screen lg:h-screen h-[100dvh] lg:overflow-y-hidden overflow-x-hidden flex flex-col font-[family-name:var(--font-geist-sans)] p-8 lg:p-5">
       <MeshGradientBackground />
-      <div className="flex flex-row justify-between w-full h-[5rem]">
-        <Link href="/" className="mt-1.5">
-          <LogoW className="w-[1.8rem]" />
+      <div className="flex flex-row justify-between items-center w-full h-[2rem]">
+        <Link href="/">
+          <LogoW className="w-[1.2rem]" />
         </Link>
         <Link
           href="https://www.buymeacoffee.com/anandbaburajan"
@@ -48,18 +48,18 @@ export default function Home() {
           >
             Turn your cherished words into a beautiful, printed word search
             puzzle. Choose sweet nicknames, inside jokes, and treasured memories
-            that mean the most to you both. A thoughtful gift that's uniquely
-            yours.
+            that mean the most to you both. A thoughtful gift that&apos;s
+            uniquely yours.
           </h3>
           <Link href="/app" className="h-fit mt-6 w-fit">
-            <Button className="flex w-max text-md rounded-xl border-t border-[#fff9f9] shadow-lg transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38]">
-              Create your Wordamour — it's free
+            <Button className="flex w-max text-base rounded-xl border-t border-[#fff9f9] shadow-lg transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38]">
+              Create your Wordamour — it&apos;s free
             </Button>
           </Link>
           <div className={`flex mt-16`}>
             <Dialog>
               <DialogTrigger asChild>
-                <span className="font-medium text-md text-black/70 underline cursor-pointer underline-offset-4">
+                <span className="font-medium text-base text-black/70 underline cursor-pointer underline-offset-4">
                   Features
                 </span>
               </DialogTrigger>
@@ -111,18 +111,18 @@ export default function Home() {
         <h3 className={`flex font-normal text-lg text-black/40 my-6`}>
           Turn your cherished words into a beautiful, printed word search
           puzzle. Choose sweet nicknames, inside jokes, and treasured memories
-          that mean the most to you both. A thoughtful gift that's uniquely
+          that mean the most to you both. A thoughtful gift that&apos;s uniquely
           yours.
         </h3>
         <Link href="/app" className="h-fit w-fit">
-          <Button className="flex w-full text-md rounded-xl border-t border-[#fff9f9] shadow-lg transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38]">
-            Create your Wordamour — it's free
+          <Button className="flex w-full text-base rounded-xl border-t border-[#fff9f9] shadow-lg transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38]">
+            Create your Wordamour — it&apos;s free
           </Button>
         </Link>
         <div className="mt-16">
           <Drawer>
             <DrawerTrigger>
-              <span className="font-medium text-md text-black/70 underline cursor-pointer underline-offset-4">
+              <span className="font-medium text-base text-black/70 underline cursor-pointer underline-offset-4">
                 Features
               </span>
             </DrawerTrigger>
