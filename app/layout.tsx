@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import favicon from "../public/icon.svg";
@@ -69,6 +70,7 @@ export default function RootLayout({
       >
         {children}
       </body>
+      <GoogleAnalytics gaId="G-WCYN5PZ8R6" />
     </html>
   );
 }
