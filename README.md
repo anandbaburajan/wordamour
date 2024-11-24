@@ -5,12 +5,11 @@
    width="40px"
 />
 
-Wordamour is a personalised word search puzzle for your special someone. [Create yours](https://wordamour.com)!
+Wordamour is a personalised word search puzzle for your special someone. [Create one](https://wordamour.com)!
 
 <img
    src="./public/meta.png"
    alt="Wordamour meta image"
-   style="border-radius: 10px;"
 />
 
 ## Get in touch
