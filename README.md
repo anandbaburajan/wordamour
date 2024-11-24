@@ -24,4 +24,4 @@ Thanks to @blex41 for [word-search](https://github.com/blex41/word-search), @ivm
 
 ## License
 
-Wordamour is distributed under the MIT [license](https://github.com/anandbaburajan/wordamour/main/LICENSE).
+Wordamour is distributed under the MIT [license](https://github.com/anandbaburajan/wordamour/blob/main/LICENSE).
