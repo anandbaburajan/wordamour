@@ -214,7 +214,7 @@ export default function Home() {
               <SheetContent
                 onPointerDownOutside={(e) => e.preventDefault()}
                 onInteractOutside={(e) => e.preventDefault()}
-                className="min-w-[calc(100vw-20.6rem)] p-10 overflow-y-auto font-[family-name:var(--font-geist-sans)]"
+                className="min-w-[calc(100vw-20.6rem)] px-10 py-9 overflow-y-auto font-[family-name:var(--font-geist-sans)]"
               >
                 <SheetTitle>Example questions for inspiration</SheetTitle>
                 <SheetDescription>
@@ -322,8 +322,8 @@ export default function Home() {
                       for gifting!
                     </p>
                     <p>
-                      If Wordamour brings a smile to your special someone&apos;s
-                      face, consider{" "}
+                      If Wordamour brings a smile to your partner&apos;s face,
+                      consider{" "}
                       <Link
                         href="https://www.buymeacoffee.com/anandbaburajan"
                         className="underline underline-offset-4 inline-flex items-center"
