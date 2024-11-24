@@ -1,3 +1,4 @@
+import GitHubLogoSVG from "@/components/github-logo";
 import MeshGradientBackground from "@/components/gradient";
 import LogoW from "@/components/logo-w";
 import { Button } from "@/components/ui/button";
@@ -21,17 +22,25 @@ export default function Home() {
         <Link href="/">
           <LogoW className="w-[1.2rem]" />
         </Link>
-        <Link
-          href="https://www.buymeacoffee.com/anandbaburajan"
-          className="h-fit"
-        >
-          <Button
-            className="bg-gray-600/10 hover:bg-gray-600/15 font-medium text-sm transition duration-200 rounded-xl shadow-none text-gray-600"
-            size={"sm"}
+        <div className="flex flex-row items-center">
+          <Link
+            href="https://github.com/anandbaburajan/wordamour"
+            className="mr-4 lg:mr-8"
           >
-            Buy me a coffee?
-          </Button>
-        </Link>
+            <GitHubLogoSVG className="h-[1rem] w-[1rem]" />
+          </Link>
+          <Link
+            href="https://www.buymeacoffee.com/anandbaburajan"
+            className="h-fit"
+          >
+            <Button
+              className="bg-gray-600/10 hover:bg-gray-600/15 font-medium text-sm transition duration-200 rounded-xl shadow-none text-gray-600"
+              size={"sm"}
+            >
+              Buy me a coffee?
+            </Button>
+          </Link>
+        </div>
       </div>
       <div className="hidden lg:flex flex-row justify-center items-center h-[calc(100vh-5rem)]">
         <div className="flex flex-col w-[50rem] ml-[11rem] mr-[5rem]">
