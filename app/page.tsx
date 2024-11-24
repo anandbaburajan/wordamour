@@ -63,7 +63,7 @@ export default function Home() {
                   Features
                 </span>
               </DialogTrigger>
-              <DialogContent className="p-12 w-auto">
+              <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
                 <ul
                   className={`marker:text-gray-500 list-disc marker:font-bold space-y-2`}
                 >

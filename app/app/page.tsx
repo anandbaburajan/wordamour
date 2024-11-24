@@ -214,11 +214,11 @@ export default function Home() {
               <SheetContent
                 onPointerDownOutside={(e) => e.preventDefault()}
                 onInteractOutside={(e) => e.preventDefault()}
-                className="min-w-[calc(100vw-20.6rem)] p-10 overflow-y-auto"
+                className="min-w-[calc(100vw-20.6rem)] p-10 overflow-y-auto font-[family-name:var(--font-geist-sans)]"
               >
                 <SheetTitle>Example questions for inspiration</SheetTitle>
                 <SheetDescription>
-                  <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black font-medium text-base">
+                  <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black text-base">
                     <li>Nice adjectives to describe your partner?</li>
                     <li>Nicknames?</li>
                     <li>Birth place?</li>
@@ -306,7 +306,7 @@ export default function Home() {
                       <Download className="h-3 w-3" strokeWidth={2} />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="p-12 w-auto">
+                  <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
                     <p>Your Wordamour has been downloaded!</p>
                     <p>
                       There are two pages to be printed — the first one with the
