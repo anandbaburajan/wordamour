@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetTitle,
@@ -68,7 +69,11 @@ export default function Home() {
 
   const [uniqueCoords, setUniqueCoords] = useState([]);
 
-  const popOverRef = useRef<HTMLButtonElement | null>(null);
+  const popOverBigRef = useRef<HTMLButtonElement | null>(null);
+
+  const popOverSmallRef = useRef<HTMLButtonElement | null>(null);
+
+  const sheetBigRef = useRef<HTMLButtonElement | null>(null);
 
   const options = {
     // default is `save`
@@ -107,10 +112,11 @@ export default function Home() {
     },
   };
 
-  const getTargetElement = () => document.getElementById("content-id");
+  const getBigPuzzle = () => document.getElementById("big-puzzle");
+  const getSmallPuzzle = () => document.getElementById("small-puzzle");
 
   return (
-    <div className="h-[100dvh] overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
+    <div className="h-[100dvh] overflow-x-hidden overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
       <main className="hidden lg:flex flex-row h-full">
         <div className="flex flex-col justify-between w-[20.6rem] border-gray-200 relative">
           <MeshGradientBackground />
@@ -121,7 +127,7 @@ export default function Home() {
               onChange={handleTitleChange}
             />
             <Popover>
-              <PopoverClose ref={popOverRef}></PopoverClose>
+              <PopoverClose ref={popOverBigRef}></PopoverClose>
               <PopoverTrigger asChild>
                 <Button
                   variant={"outline"}
@@ -140,7 +146,7 @@ export default function Home() {
                   selected={puzzleDate}
                   initialFocus
                   onSelect={(e) => {
-                    popOverRef.current?.click();
+                    popOverBigRef.current?.click();
                     setPuzzleDate(e);
                   }}
                 />
@@ -175,28 +181,32 @@ export default function Home() {
             <Button
               className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
-                if (wordsList.length === 0) {
+                const words = wordsList.split(/\r?\n/).filter((e) => e !== "");
+
+                if (words.length === 0) {
                   toast.info("Please enter some words.");
                   return;
                 }
 
-                if (wordsList.split(/\r?\n/).length > 32) {
+                if (words.length > 32) {
                   toast.info("Only 32 words are allowed.");
                   return;
                 }
 
-                const options = {
+                sheetBigRef.current?.click();
+
+                const wsOptions = {
                   cols: 22,
                   rows: 16,
                   disabledDirections: ["N", "W", "NW", "SW", "NE"],
-                  dictionary: wordsList.split(/\r?\n/),
+                  dictionary: words,
                   maxWords: 32,
                   backwardsProbability: 0.3,
                   upperCase: true,
                   diacritics: true,
                 };
 
-                const ws = new WordSearch(options);
+                const ws = new WordSearch(wsOptions);
 
                 setWordSearchObj(ws);
 
@@ -206,6 +216,7 @@ export default function Home() {
               <Shuffle className="h-3 w-3" strokeWidth={2} />
             </Button>
             <Sheet modal={false}>
+              <SheetClose ref={sheetBigRef}></SheetClose>
               <SheetTrigger asChild>
                 <span className="font-medium text-sm text-black/40 cursor-pointer h-fit flex items-center w-full justify-between underline underline-offset-4">
                   See example questions for inspiration
@@ -219,9 +230,9 @@ export default function Home() {
                 <SheetTitle>Example questions for inspiration</SheetTitle>
                 <SheetDescription>
                   <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black text-base">
-                    <li>Nice adjectives to describe your partner?</li>
                     <li>Nicknames?</li>
                     <li>Birth place?</li>
+                    <li>Nice adjectives to describe your partner?</li>
                     <li>
                       Words reminding of your partner&apos;s adventurous
                       moments?
@@ -300,7 +311,7 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
-                      onClick={() => generatePDF(getTargetElement, options)}
+                      onClick={() => generatePDF(getBigPuzzle, options)}
                       className="items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white"
                     >
                       <Download className="h-3 w-3" strokeWidth={2} />
@@ -416,7 +427,7 @@ export default function Home() {
               paperSize === "A5" && "w-[148mm] min-h-[420mm]",
               paperSize === "letter" && "w-[215.9mm] min-h-[558.8mm]"
             )}
-            id="content-id"
+            id="big-puzzle"
           >
             <div
               className={cn(
@@ -529,18 +540,367 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Toaster />
       </main>
-      <main className="flex lg:hidden h-full flex-col items-center justify-center w-full p-10 text-center">
+      <main className="flex lg:hidden h-full flex-col w-full">
         <MeshGradientBackground />
-        <p className="text-base font-medium">
-          Ouch, that&apos;s a small screen.
-        </p>
-        <p className="mt-5 text-base text-black/50">
-          Wordamour works on laptops and desktops. Please use a device with a
-          larger screen size. You&apos;ll be in for a surprise!
-        </p>
+        <div className="flex flex-col min-h-full p-10 justify-between border-gray-200">
+          <div className="flex flex-col h-full w-full">
+            <Input
+              className="flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
+              placeholder="Title"
+              onChange={handleTitleChange}
+            />
+            <Popover>
+              <PopoverClose ref={popOverSmallRef}></PopoverClose>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className="text-base flex justify-start mb-4 px-3 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none"
+                >
+                  {puzzleDate ? (
+                    format(puzzleDate, "PPP")
+                  ) : (
+                    <span className="text-gray-500">Date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                className="w-[calc(100vw-5rem)] p-0"
+                align="start"
+              >
+                <Calendar
+                  mode="single"
+                  selected={puzzleDate}
+                  initialFocus
+                  onSelect={(e) => {
+                    popOverSmallRef.current?.click();
+                    setPuzzleDate(e);
+                  }}
+                  className="h-full w-full flex"
+                  classNames={{
+                    months: "flex w-full flex-col space-y-4 flex-1",
+                    month: "space-y-4 w-full flex flex-col",
+                    table: "w-full h-full border-collapse space-y-1",
+                    head_row: "",
+                    row: "w-full mt-2",
+                  }}
+                />
+              </PopoverContent>
+            </Popover>
+            <Select onValueChange={setPaperSize}>
+              <SelectTrigger
+                className={`${
+                  paperSize ? "" : "text-gray-500"
+                } text-base flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
+              >
+                <SelectValue placeholder="Paper size" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="A4">
+                  A4 (8.27&quot; x 11.69&quot;)
+                </SelectItem>
+                <SelectItem value="A5">A5 (5.83&quot; x 8.27&quot;)</SelectItem>
+                <SelectItem value="letter">
+                  Letter (8.5&quot; x 11&quot;)
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex flex-col w-full">
+            <Textarea
+              value={wordsList}
+              onChange={handleWordsListChange}
+              className="h-[20rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
+              placeholder="Words (one per line)"
+            />
+            <Dialog modal={false}>
+              <DialogTrigger asChild>
+                <span className="font-medium text-sm text-black/40 cursor-pointer h-fit flex items-center w-full justify-center underline underline-offset-4">
+                  See example questions for inspiration
+                </span>
+              </DialogTrigger>
+              <DialogContent
+                onPointerDownOutside={(e) => e.preventDefault()}
+                onInteractOutside={(e) => e.preventDefault()}
+                className="top-[7.5rem] h-[15rem] p-10 w-full font-[family-name:var(--font-geist-sans)] rounded-b-2xl"
+              >
+                <div className="h-full overflow-y-auto">
+                  <ul className="marker:text-gray-500 ml-4 list-disc marker:font-bold space-y-1 text-black text-base">
+                    <li>Nicknames?</li>
+                    <li>Birth place?</li>
+                    <li>Nice adjectives to describe your partner?</li>
+                    <li>
+                      Words reminding of your partner&apos;s adventurous
+                      moments?
+                    </li>
+                    <li>
+                      Words reminding of your partner&apos;s special moments?
+                    </li>
+                    <li>
+                      Words reminding of special moments shared by you two?
+                    </li>
+                    <li>
+                      Words reminding of your partner&apos;s embarrasing
+                      moments?
+                    </li>
+                    <li>Words reminding of your partner&apos;s dreams?</li>
+                    <li>Words reminding of your inside jokes?</li>
+                    <li>Go-to drink?</li>
+                    <li>
+                      Where did your partner go for high school or college?
+                    </li>
+                    <li>
+                      Words reminding of your partner&apos;s favorite
+                      monthly/annual activies?
+                    </li>
+                    <li>Quirky words your partner uses?</li>
+                    <li>A song you loving jamming together?</li>
+                    <li>Favourite snacks or dishes or street food?</li>
+                    <li>Where did you first meet?</li>
+                    <li>Pet&apos;s name?</li>
+                    <li>Kinds of animals they adore?</li>
+                    <li>Son&apos;s and/or daughter&apos;s name/nickname?</li>
+                    <li>Where did you go or plan to go for honeymoon?</li>
+                    <li>Favorite childhood cartoon character?</li>
+                    <li>Words related to their favourite subject/topic?</li>
+                    <li>First dream job?</li>
+                    <li>Favorite color?</li>
+                    <li>Favorite season?</li>
+                    <li>Favorite sports?</li>
+                    <li>Favorite books/movies/shows/songs/games?</li>
+                    <li>Favorite bands/artists?</li>
+                    <li>Favorite clothing/shoe/tech brands?</li>
+                    <li>Dream car?</li>
+                  </ul>
+                </div>
+              </DialogContent>
+            </Dialog>
+            {!title ||
+            !puzzleDate ||
+            !paperSize ||
+            wordsList.length === 0 ||
+            wordsList.split(/\r?\n/).length > 32 ? (
+              <Button
+                onClick={() => {
+                  if (!title) {
+                    toast.info("Please set the title.");
+                    return;
+                  }
+
+                  if (!puzzleDate) {
+                    toast.info("Please set the date for the puzzle.");
+                    return;
+                  }
+
+                  if (!paperSize) {
+                    toast.info("Please set the paper size.");
+                    return;
+                  }
+
+                  const words = wordsList
+                    .split(/\r?\n/)
+                    .filter((e) => e !== "");
+
+                  if (words.length === 0) {
+                    toast.info("Please enter some words.");
+                    return;
+                  }
+
+                  if (words.length > 32) {
+                    toast.info("Only 32 words are allowed.");
+                    return;
+                  }
+                }}
+                className="mt-10 text-base items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-full p-4 rounded-xl font-medium shadow-none text-white"
+              >
+                Download
+              </Button>
+            ) : (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    onClick={() => {
+                      const words = wordsList
+                        .split(/\r?\n/)
+                        .filter((e) => e !== "");
+
+                      const wsOptions = {
+                        cols: 22,
+                        rows: 16,
+                        disabledDirections: ["N", "W", "NW", "SW", "NE"],
+                        dictionary: words,
+                        maxWords: 32,
+                        backwardsProbability: 0.3,
+                        upperCase: true,
+                        diacritics: true,
+                      };
+
+                      const ws = new WordSearch(wsOptions);
+
+                      setWordSearchObj(ws);
+
+                      setUniqueCoords(getUniqueCoordinates(ws.words));
+
+                      setTimeout(() => {
+                        generatePDF(getSmallPuzzle, options);
+                      }, 500);
+                    }}
+                    className="mt-10 text-base rounded-xl items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-full p-4 font-medium shadow-none text-white"
+                  >
+                    Download
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="w-[calc(100vw-5rem)] rounded-xl font-[family-name:var(--font-geist-sans)]">
+                  <p>Your Wordamour has been downloaded!</p>
+                  <p>
+                    There are two pages to be printed — the first one with the
+                    word search puzzle and the second one with the solutions (to
+                    be shared later). I would highly recommend folding the first
+                    page into an{" "}
+                    <Link
+                      href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
+                      className="underline underline-offset-4"
+                    >
+                      origami heart
+                    </Link>{" "}
+                    for gifting!
+                  </p>
+                  <p>
+                    If Wordamour brings a smile to your partner&apos;s face,
+                    consider{" "}
+                    <Link
+                      href="https://www.buymeacoffee.com/anandbaburajan"
+                      className="underline underline-offset-4 inline-flex items-center"
+                    >
+                      buying me a coffee{" "}
+                      <Coffee
+                        className="h-5 w-5 ml-1 text-[#FEDD03]"
+                        strokeWidth={2}
+                      />
+                    </Link>
+                    !
+                  </p>
+                </DialogContent>
+              </Dialog>
+            )}
+          </div>
+        </div>
+        <div
+          className={cn(
+            "flex flex-col bg-white",
+            paperSize === "A4" && "w-[210mm] min-h-[594mm]",
+            paperSize === "A5" && "w-[148mm] min-h-[420mm]",
+            paperSize === "letter" && "w-[215.9mm] min-h-[558.8mm]"
+          )}
+          id="small-puzzle"
+        >
+          <div
+            className={cn(
+              "flex justify-center w-full h-1/2 bg-white flex-col items-center",
+              paperSize === "A4" && "a4-bg",
+              paperSize === "A5" && "a5-bg",
+              paperSize === "letter" && "letter-bg"
+            )}
+          >
+            <div className="flex justify-center mb-8">
+              <h1 className={`text-5xl ${instrumentSerif.className}`}>
+                {title || "Untitled"}
+              </h1>
+            </div>
+            <div className="flex justify-center">
+              <h6 className="text-sm mb-16 text-gray-400">
+                {puzzleDate ? dayjs(puzzleDate).format("MMM DD, YYYY") : "Date"}
+              </h6>
+            </div>
+            <div className="flex justify-center">
+              <table
+                className={cn(
+                  paperSize === "A4" && "text-sm",
+                  paperSize === "letter" && "text-sm",
+                  paperSize === "A5" && "text-xs"
+                )}
+              >
+                <tbody>
+                  {wordSearchObj &&
+                    wordSearchObj.grid.length > 0 &&
+                    wordSearchObj.grid.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((cell, cellIndex) => (
+                          <td
+                            key={cellIndex}
+                            className={cn(
+                              "text-gray-900",
+                              paperSize === "A4" && "p-2",
+                              paperSize === "letter" && "p-2",
+                              paperSize === "A5" && "p-1.5"
+                            )}
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div
+            className={cn(
+              "flex justify-center w-full h-1/2 bg-white flex-col items-center",
+              paperSize === "A4" && "a4-bg",
+              paperSize === "A5" && "a5-bg",
+              paperSize === "letter" && "letter-bg"
+            )}
+          >
+            <div className="flex justify-center mb-8">
+              <h1 className={`text-5xl ${instrumentSerif.className}`}>
+                {title || "Untitled"}
+              </h1>
+            </div>
+            <div className="flex justify-center">
+              <h6 className="text-sm mb-16 text-gray-400">
+                {puzzleDate ? dayjs(puzzleDate).format("MMM DD, YYYY") : "Date"}
+              </h6>
+            </div>
+            <div className="flex justify-center">
+              <table
+                className={cn(
+                  paperSize === "A4" && "text-sm",
+                  paperSize === "letter" && "text-sm",
+                  paperSize === "A5" && "text-xs"
+                )}
+              >
+                <tbody>
+                  {wordSearchObj &&
+                    wordSearchObj.grid.length > 0 &&
+                    wordSearchObj.grid.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((cell, cellIndex) => (
+                          <td
+                            key={cellIndex}
+                            className={cn(
+                              "text-gray-900",
+                              uniqueCoords.some(
+                                (coord) =>
+                                  coord.x === cellIndex && coord.y === rowIndex
+                              ) && "bg-gray-300/50",
+                              paperSize === "A4" && "p-2",
+                              paperSize === "letter" && "p-2",
+                              paperSize === "A5" && "p-1.5"
+                            )}
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </main>
+      <Toaster />
     </div>
   );
 }
