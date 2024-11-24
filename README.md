@@ -20,7 +20,7 @@ If Wordamour brings a smile to your special someone's face, consider [buying me 
 
 ## Acknowledgements
 
-Thanks to @blex41 for [word-search](https://github.com/blex41/word-search), @ivmarcos for [react-to-pdf](https://github.com/ivmarcos/react-to-pdf), Freepik for the corner elements in the pages, and the [other wonderful libraries](https://github.com/anandbaburajan/wordamour/blob/main/package.json) used to build Wordamour.
+Thanks to @blex41 for [word-search](https://github.com/blex41/word-search), @ivmarcos for [react-to-pdf](https://github.com/ivmarcos/react-to-pdf), Freepik for the [corner elements](https://www.freepik.com/free-vector/vector-vintage-corners-elements-frames-page-decoration_10700746.htm) in the pages, and the [other wonderful libraries](https://github.com/anandbaburajan/wordamour/blob/main/package.json) used to build Wordamour.
 
 ## License
 
