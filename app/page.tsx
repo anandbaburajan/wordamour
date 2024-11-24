@@ -70,7 +70,7 @@ export default function Home() {
                   <li>Easy-to-use word search puzzle maker</li>
                   <li>25+ questions to help you come up with words</li>
                   <li>Beautiful, high-quality PDF (A4/A5/Letter) download</li>
-                  <li>100% secure (your data is never stored with us)</li>
+                  <li>100% secure (your data is never stored)</li>
                   <li>
                     100% free (you can{" "}
                     <Link
