@@ -4,6 +4,12 @@ import MeshGradientBackground from "@/components/gradient";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   Popover,
@@ -25,6 +31,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+
 import { Toaster } from "@/components/ui/sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -33,7 +40,15 @@ import WordSearch from "@blex41/word-search";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
 import dayjs from "dayjs";
-import { Coffee, Download, Eye, EyeOff, Shuffle } from "lucide-react";
+import {
+  Coffee,
+  Download,
+  Eye,
+  EyeOff,
+  Flag,
+  Mail,
+  Shuffle,
+} from "lucide-react";
 import { Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -230,7 +245,7 @@ export default function Home() {
                 <SheetTitle>Example questions for inspiration</SheetTitle>
                 <SheetDescription>
                   <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black text-base">
-                    <li>Nicknames?</li>
+                    <li>Your partner&apos;s nicknames?</li>
                     <li>Birth place?</li>
                     <li>Nice adjectives to describe your partner?</li>
                     <li>
@@ -418,6 +433,61 @@ export default function Home() {
                   </div>
                 )}
               </div>
+            </div>
+            <div className="absolute right-10 bottom-10 flex flex-col space-y-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    className={`h-4 w-4 p-4 rounded-lg font-medium transition duration-200 shadow-none text-gray-700`}
+                    variant={"outline"}
+                  >
+                    ?
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  className="font-[family-name:var(--font-geist-sans)]"
+                >
+                  <DropdownMenuItem>
+                    <Link
+                      href="mailto:anandbaburajan@gmail.com"
+                      className="w-full h-full inline-flex items-center"
+                    >
+                      <Mail
+                        className="h-3.5 w-3.5 text-gray-400 mr-2"
+                        strokeWidth={2}
+                      />
+                      Contact me
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="https://github.com/anandbaburajan/wordamour/issues/new"
+                      target="_blank"
+                      className="w-full h-full inline-flex items-center"
+                    >
+                      <Flag
+                        className="h-3.5 w-3.5 text-gray-400 mr-2"
+                        strokeWidth={2}
+                      />
+                      Report an issue
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="https://buymeacoffee.com/anandbaburajan"
+                      target="_blank"
+                      className="w-full h-full inline-flex items-center"
+                    >
+                      <Coffee
+                        className="h-3.5 w-3.5 text-gray-400 mr-2"
+                        strokeWidth={2}
+                      />
+                      Buy me a coffee
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
           <div
@@ -626,7 +696,7 @@ export default function Home() {
               >
                 <div className="h-full overflow-y-auto">
                   <ul className="marker:text-gray-500 ml-4 list-disc marker:font-bold space-y-1 text-black text-base">
-                    <li>Nicknames?</li>
+                    <li>Your partner&apos;s nicknames?</li>
                     <li>Birth place?</li>
                     <li>Nice adjectives to describe your partner?</li>
                     <li>
