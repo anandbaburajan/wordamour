@@ -438,8 +438,7 @@ export default function Home() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    className={`h-4 w-4 p-4 rounded-lg font-medium transition duration-200 shadow-none text-gray-700`}
-                    variant={"outline"}
+                    className={`h-4 w-4 p-4 rounded-lg font-medium transition duration-200 shadow-none bg-gray-600/10 hover:bg-gray-600/15 text-gray-700`}
                   >
                     ?
                   </Button>
