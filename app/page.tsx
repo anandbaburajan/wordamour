@@ -61,7 +61,7 @@ export default function Home() {
             uniquely yours.
           </h3>
           <Link href="/app" className="h-fit mt-6 w-fit">
-            <Button className="flex w-max text-base rounded-xl border-t border-[#fff9f9] shadow-lg transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38]">
+            <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-72 items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
               Create your Wordamour — it&apos;s free
             </Button>
           </Link>
@@ -124,7 +124,7 @@ export default function Home() {
           yours.
         </h3>
         <Link href="/app" className="h-fit w-fit">
-          <Button className="flex w-full text-base rounded-xl border-t border-[#fff9f9] shadow-lg transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38]">
+          <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
             Create your Wordamour — it&apos;s free
           </Button>
         </Link>
