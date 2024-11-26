@@ -337,8 +337,8 @@ export default function Home() {
                     <p>
                       There are two pages to be printed — the first one with the
                       word search puzzle and the second one with the solutions
-                      (to be shared later). I would highly recommend folding the
-                      first page into an{" "}
+                      (for you to help them with clues). I would highly
+                      recommend folding the first page into an{" "}
                       <Link
                         href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
                         className="underline underline-offset-4"
@@ -823,9 +823,9 @@ export default function Home() {
                   <p>Your Wordamour has been downloaded!</p>
                   <p>
                     There are two pages to be printed — the first one with the
-                    word search puzzle and the second one with the solutions (to
-                    be shared later). I would highly recommend folding the first
-                    page into an{" "}
+                    word search puzzle and the second one with the solutions
+                    (for you to help them with clues). I would highly recommend
+                    folding the first page into an{" "}
                     <Link
                       href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
                       className="underline underline-offset-4"
