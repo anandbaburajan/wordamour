@@ -445,7 +445,7 @@ export default function Home() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="end"
-                  className="font-[family-name:var(--font-geist-sans)]"
+                  className="font-[family-name:var(--font-geist-sans)] rounded-lg"
                 >
                   <DropdownMenuItem>
                     <Link
