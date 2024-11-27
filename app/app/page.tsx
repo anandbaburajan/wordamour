@@ -37,7 +37,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 // @ts-expect-error no types
 import WordSearch from "@blex41/word-search";
-// import { sendGTMEvent } from "@next/third-parties/google";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
 import dayjs from "dayjs";
