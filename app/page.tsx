@@ -84,7 +84,7 @@ export default function Home() {
                     100% free (you can{" "}
                     <Link
                       href="https://www.buymeacoffee.com/anandbaburajan"
-                      className="underline"
+                      className="underline underline-offset-4"
                     >
                       buy me a coffee
                     </Link>{" "}
@@ -147,7 +147,7 @@ export default function Home() {
                   100% free (
                   <Link
                     href="https://www.buymeacoffee.com/anandbaburajan"
-                    className="underline"
+                    className="underline underline-offset-4"
                   >
                     buy me a coffee
                   </Link>{" "}
