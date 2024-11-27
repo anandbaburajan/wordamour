@@ -37,6 +37,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 // @ts-expect-error no types
 import WordSearch from "@blex41/word-search";
+// import { sendGTMEvent } from "@next/third-parties/google";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
 import dayjs from "dayjs";
@@ -326,7 +327,10 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
-                      onClick={() => generatePDF(getBigPuzzle, options)}
+                      id="download-pdf-desktop"
+                      onClick={() => {
+                        generatePDF(getBigPuzzle, options);
+                      }}
                       className="items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-4 p-4 rounded-lg font-medium shadow-none text-white"
                     >
                       <Download className="h-3 w-3" strokeWidth={2} />
@@ -788,6 +792,7 @@ export default function Home() {
               <Dialog>
                 <DialogTrigger asChild>
                   <Button
+                    id="download-pdf-mobile"
                     onClick={() => {
                       const words = wordsList
                         .split(/\r?\n/)
