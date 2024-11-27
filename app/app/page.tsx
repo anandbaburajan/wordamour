@@ -449,7 +449,7 @@ export default function Home() {
                 >
                   <DropdownMenuItem>
                     <Link
-                      href="mailto:anandbaburajan@gmail.com"
+                      href="mailto:anand@wordamour.com"
                       className="w-full h-full inline-flex items-center"
                     >
                       <Mail
