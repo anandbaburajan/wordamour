@@ -1,4 +1,4 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import favicon from "../public/icon.svg";
@@ -65,6 +65,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-M3HH6V6K" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
