@@ -64,7 +64,6 @@ export default function Home() {
             >
               Wordamour
             </span>
-            .
           </h1>
           <h3
             className={`flex font-normal text-xl text-black/40 mt-6 w-[36rem]`}
@@ -155,7 +154,6 @@ export default function Home() {
           <span className={`${DMSerifDisplay.className} italic text-black/60`}>
             Wordamour
           </span>
-          .
         </h1>
         <h3 className={`flex font-normal text-lg text-black/40 my-6 leading-6`}>
           Turn your cherished words into a beautiful, printed word search
