@@ -3,7 +3,12 @@
 import MeshGradientBackground from "@/components/gradient";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -89,6 +94,8 @@ export default function Home() {
   const popOverSmallRef = useRef<HTMLButtonElement | null>(null);
 
   const sheetBigRef = useRef<HTMLButtonElement | null>(null);
+
+  const dialogSmallRef = useRef<HTMLButtonElement | null>(null);
 
   const options = {
     // default is `save`
@@ -196,10 +203,23 @@ export default function Home() {
             <Button
               className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
-                const words = wordsList.split(/\r?\n/).filter((e) => e !== "");
+                const words = wordsList
+                  .split(/\r?\n/)
+                  .filter((e) => e !== "")
+                  .map((e) => e.replace(/\s+/g, ""));
 
                 if (words.length === 0) {
                   toast.info("Please enter some words.");
+                  return;
+                }
+
+                if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
+                  toast.info("Only letters are allowed in the words.");
+                  return;
+                }
+
+                if (words.some((word) => word.length === 1)) {
+                  toast.info("Words should have at least 2 letters.");
                   return;
                 }
 
@@ -686,6 +706,7 @@ export default function Home() {
               placeholder="Words (one per line)"
             />
             <Dialog modal={false}>
+              <DialogClose ref={dialogSmallRef}></DialogClose>
               <DialogTrigger asChild>
                 <span className="font-medium text-sm text-black/40 cursor-pointer h-fit flex items-center w-full justify-center underline underline-offset-4">
                   See example questions for inspiration
@@ -750,8 +771,24 @@ export default function Home() {
             {!title ||
             !puzzleDate ||
             !paperSize ||
-            wordsList.length === 0 ||
-            wordsList.split(/\r?\n/).length > 32 ? (
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, "")).length === 0 ||
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, ""))
+              .some((word) => word.length === 1) ||
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, ""))
+              .some((word) => !/^[a-zA-Z]+$/.test(word)) ||
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, "")).length > 32 ? (
               <Button
                 onClick={() => {
                   if (!title) {
@@ -771,10 +808,21 @@ export default function Home() {
 
                   const words = wordsList
                     .split(/\r?\n/)
-                    .filter((e) => e !== "");
+                    .filter((e) => e !== "")
+                    .map((e) => e.replace(/\s+/g, ""));
 
                   if (words.length === 0) {
                     toast.info("Please enter some words.");
+                    return;
+                  }
+
+                  if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
+                    toast.info("Only letters are allowed in the words.");
+                    return;
+                  }
+
+                  if (words.some((word) => word.length === 1)) {
+                    toast.info("Words should have at least 2 letters.");
                     return;
                   }
 
@@ -795,7 +843,10 @@ export default function Home() {
                     onClick={() => {
                       const words = wordsList
                         .split(/\r?\n/)
-                        .filter((e) => e !== "");
+                        .filter((e) => e !== "")
+                        .map((e) => e.replace(/\s+/g, ""));
+
+                      dialogSmallRef.current?.click();
 
                       const wsOptions = {
                         cols: 22,
