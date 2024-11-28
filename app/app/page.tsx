@@ -3,7 +3,12 @@
 import MeshGradientBackground from "@/components/gradient";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -90,6 +95,8 @@ export default function Home() {
 
   const sheetBigRef = useRef<HTMLButtonElement | null>(null);
 
+  const dialogSmallRef = useRef<HTMLButtonElement | null>(null);
+
   const options = {
     // default is `save`
     method: "save",
@@ -169,8 +176,9 @@ export default function Home() {
             </Popover>
             <Select onValueChange={setPaperSize}>
               <SelectTrigger
-                className={`${paperSize ? "" : "text-gray-500"
-                  } flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
+                className={`${
+                  paperSize ? "" : "text-gray-500"
+                } flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
               >
                 <SelectValue placeholder="Paper size" />
               </SelectTrigger>
@@ -195,24 +203,23 @@ export default function Home() {
             <Button
               className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
-
                 const words = wordsList
                   .split(/\r?\n/)
-                  .map((e) => e.trim())
-                  .filter((e) => e !== "");
+                  .filter((e) => e !== "")
+                  .map((e) => e.replace(/\s+/g, ""));
 
                 if (words.length === 0) {
                   toast.info("Please enter some words.");
                   return;
                 }
 
-                if (words.some((word) => word.length === 1)) {
-                  toast.info("Please enter words with at least 2 letters");
+                if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
+                  toast.info("Only letters are allowed in the words.");
                   return;
                 }
 
-                if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
-                  toast.info("Please enter words with only letters");
+                if (words.some((word) => word.length === 1)) {
+                  toast.info("Words should have at least 2 letters.");
                   return;
                 }
 
@@ -382,8 +389,9 @@ export default function Home() {
                 </Dialog>
               )}
               <Button
-                className={`${wordSearchObj ? "" : "invisible"
-                  } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
+                className={`${
+                  wordSearchObj ? "" : "invisible"
+                } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
                 onClick={() => {
                   setUniqueCoords(getUniqueCoordinates(wordSearchObj.words));
                   setWordsShown(!wordsShown);
@@ -424,15 +432,16 @@ export default function Home() {
                             {row.map((cell, cellIndex) => (
                               <td
                                 key={cellIndex}
-                                className={`${wordsShown &&
+                                className={`${
+                                  wordsShown &&
                                   uniqueCoords.some(
                                     (coord) =>
                                       coord.x === cellIndex &&
                                       coord.y === rowIndex
                                   )
-                                  ? "bg-lime-300/50"
-                                  : ""
-                                  } p-2 text-gray-900`}
+                                    ? "bg-lime-300/50"
+                                    : ""
+                                } p-2 text-gray-900`}
                               >
                                 {cell}
                               </td>
@@ -672,8 +681,9 @@ export default function Home() {
             </Popover>
             <Select onValueChange={setPaperSize}>
               <SelectTrigger
-                className={`${paperSize ? "" : "text-gray-500"
-                  } text-base flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
+                className={`${
+                  paperSize ? "" : "text-gray-500"
+                } text-base flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
               >
                 <SelectValue placeholder="Paper size" />
               </SelectTrigger>
@@ -696,6 +706,7 @@ export default function Home() {
               placeholder="Words (one per line)"
             />
             <Dialog modal={false}>
+              <DialogClose ref={dialogSmallRef}></DialogClose>
               <DialogTrigger asChild>
                 <span className="font-medium text-sm text-black/40 cursor-pointer h-fit flex items-center w-full justify-center underline underline-offset-4">
                   See example questions for inspiration
@@ -758,10 +769,26 @@ export default function Home() {
               </DialogContent>
             </Dialog>
             {!title ||
-              !puzzleDate ||
-              !paperSize ||
-              wordsList.length === 0 ||
-              wordsList.split(/\r?\n/).length > 32 ? (
+            !puzzleDate ||
+            !paperSize ||
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, "")).length === 0 ||
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, ""))
+              .some((word) => word.length === 1) ||
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, ""))
+              .some((word) => !/^[a-zA-Z]+$/.test(word)) ||
+            wordsList
+              .split(/\r?\n/)
+              .filter((e) => e !== "")
+              .map((e) => e.replace(/\s+/g, "")).length > 32 ? (
               <Button
                 onClick={() => {
                   if (!title) {
@@ -781,22 +808,21 @@ export default function Home() {
 
                   const words = wordsList
                     .split(/\r?\n/)
-                    .map((e) => e.trim())
-                    .filter((e) => e !== "");
-
+                    .filter((e) => e !== "")
+                    .map((e) => e.replace(/\s+/g, ""));
 
                   if (words.length === 0) {
                     toast.info("Please enter some words.");
                     return;
                   }
 
-                  if (words.some((word) => word.length === 1)) {
-                    toast.info("Please enter words with at least 2 letters");
+                  if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
+                    toast.info("Only letters are allowed in the words.");
                     return;
                   }
 
-                  if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
-                    toast.info("Please enter words with only letters");
+                  if (words.some((word) => word.length === 1)) {
+                    toast.info("Words should have at least 2 letters.");
                     return;
                   }
 
@@ -817,7 +843,10 @@ export default function Home() {
                     onClick={() => {
                       const words = wordsList
                         .split(/\r?\n/)
-                        .filter((e) => e !== "");
+                        .filter((e) => e !== "")
+                        .map((e) => e.replace(/\s+/g, ""));
+
+                      dialogSmallRef.current?.click();
 
                       const wsOptions = {
                         cols: 22,
