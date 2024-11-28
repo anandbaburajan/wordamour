@@ -4,6 +4,7 @@ import LogoW from "@/components/logo-w";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Quote } from "lucide-react";
 import { DM_Serif_Display, Instrument_Serif } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,7 +33,7 @@ export default function Home() {
         <div className="flex flex-row items-center">
           <Link
             href="https://github.com/anandbaburajan/wordamour"
-            className="mr-4 lg:mr-8"
+            className="hidden lg:block lg:mr-8"
           >
             <GitHubLogoSVG className="h-[1rem] w-[1rem]" />
           </Link>
@@ -52,7 +53,7 @@ export default function Home() {
       <div className="hidden lg:flex flex-row justify-center items-center h-[calc(100vh-5rem)]">
         <div className="flex flex-col w-[50rem] ml-[11rem] mr-[5rem]">
           <h1
-            className={`${instrumentSerif.className} text-6xl text-black mt-6 leading-[1.05]`}
+            className={`${instrumentSerif.className} text-6xl text-black leading-[1.05]`}
           >
             Surprise your <br />
             special someone
@@ -73,39 +74,57 @@ export default function Home() {
             that mean the most to you both. A thoughtful gift that&apos;s
             uniquely yours.
           </h3>
-          <Link href="/app" className="h-fit mt-6 w-fit">
-            <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-72 items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
-              Create your Wordamour — it&apos;s free
-            </Button>
-          </Link>
-          <div className={`flex mt-16`}>
-            <Dialog>
-              <DialogTrigger asChild>
-                <span className="font-medium text-base text-black/70 underline cursor-pointer underline-offset-4">
-                  Features
-                </span>
-              </DialogTrigger>
-              <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
-                <ul
-                  className={`marker:text-gray-500 list-disc marker:font-bold space-y-2`}
-                >
-                  <li>Easy-to-use word search puzzle maker</li>
-                  <li>25+ questions to help you come up with words</li>
-                  <li>Beautiful, high-quality PDF (A4/A5/Letter) download</li>
-                  <li>100% secure (your data is never stored)</li>
-                  <li>
-                    100% free (you can{" "}
-                    <Link
-                      href="https://www.buymeacoffee.com/anandbaburajan"
-                      className="underline underline-offset-4"
-                    >
-                      buy me a coffee
-                    </Link>{" "}
-                    if you like!)
-                  </li>
-                </ul>
-              </DialogContent>
-            </Dialog>
+          <div className={`flex mt-6 items-center space-x-8`}>
+            <div>
+              <Link href="/app" className="h-fit w-fit">
+                <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-72 items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
+                  Create your Wordamour — it&apos;s free
+                </Button>
+              </Link>
+            </div>
+            <div>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <span className="font-medium text-base text-black/70 underline cursor-pointer underline-offset-4">
+                    Features
+                  </span>
+                </DialogTrigger>
+                <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
+                  <ul
+                    className={`marker:text-gray-500 list-disc marker:font-bold space-y-2`}
+                  >
+                    <li>Easy-to-use word search puzzle maker</li>
+                    <li>25+ questions to help you come up with words</li>
+                    <li>Beautiful, high-quality PDF (A4/A5/Letter) download</li>
+                    <li>No sign-up required and your data is never stored</li>
+                    <li>
+                      Free (you can{" "}
+                      <Link
+                        href="https://www.buymeacoffee.com/anandbaburajan"
+                        className="underline underline-offset-4"
+                      >
+                        buy me a coffee
+                      </Link>{" "}
+                      if you like!)
+                    </li>
+                  </ul>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+          <div className="relative mt-20 w-[25rem]">
+            <Quote
+              className="h-5 w-5 rotate-180 absolute text-black/40"
+              strokeWidth={2}
+            />
+            <Link
+              href="https://buymeacoffee.com/anandbaburajan/c/11872378"
+              target="_blank"
+              className="italic font-normal text-base text-black/40 absolute left-8 leading-5 hover:underline underline-offset-4"
+            >
+              Just celebrated 20 years of meeting my soulmate and it was a blast
+              hunting down all our words. Awesome idea. Thanks!
+            </Link>
           </div>
         </div>
         <div className="flex w-[48rem]">
@@ -140,44 +159,62 @@ export default function Home() {
           that mean the most to you both. A thoughtful gift that&apos;s uniquely
           yours.
         </h3>
-        <Link href="/app" className="h-fit w-fit">
-          <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
-            Create your Wordamour — it&apos;s free
-          </Button>
-        </Link>
-        <div className="mt-16">
-          <Drawer>
-            <DrawerTrigger>
-              <span className="font-medium text-base text-black/70 underline cursor-pointer underline-offset-4">
-                Features
-              </span>
-            </DrawerTrigger>
-            <DrawerContent>
-              <ul
-                className={`marker:text-gray-500 list-disc marker:font-bold space-y-2 m-10`}
-              >
-                <li>Easy-to-use word search puzzle maker</li>
-                <li>25+ questions to help you with words</li>
-                <li>Beautiful, high-quality PDF download</li>
-                <li>100% secure (no data stored)</li>
-                <li>
-                  100% free (
-                  <Link
-                    href="https://www.buymeacoffee.com/anandbaburajan"
-                    className="underline underline-offset-4"
-                  >
-                    buy me a coffee
-                  </Link>{" "}
-                  if you like!)
-                </li>
-              </ul>
-            </DrawerContent>
-          </Drawer>
+        <div className={`flex mt-6 items-center space-x-8`}>
+          <div>
+            <Link href="/app" className="h-fit w-fit">
+              <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
+                Go to app — it&apos;s free
+              </Button>
+            </Link>
+          </div>
+          <div>
+            <Drawer>
+              <DrawerTrigger>
+                <span className="font-medium text-base text-black/70 underline cursor-pointer underline-offset-4">
+                  Features
+                </span>
+              </DrawerTrigger>
+              <DrawerContent>
+                <ul
+                  className={`marker:text-gray-500 list-disc marker:font-bold space-y-2 m-10`}
+                >
+                  <li>Easy-to-use word search puzzle maker</li>
+                  <li>25+ questions to help you with words</li>
+                  <li>Beautiful, high-quality PDF download</li>
+                  <li>No sign-up and your data is never stored</li>
+                  <li>
+                    Free (
+                    <Link
+                      href="https://www.buymeacoffee.com/anandbaburajan"
+                      className="underline underline-offset-4"
+                    >
+                      buy me a coffee
+                    </Link>{" "}
+                    if you like!)
+                  </li>
+                </ul>
+              </DrawerContent>
+            </Drawer>
+          </div>
+        </div>
+        <div className="relative w-full mt-20 mb-48">
+          <Quote
+            className="h-5 w-5 rotate-180 absolute text-black/40"
+            strokeWidth={2}
+          />
+          <Link
+            href="https://buymeacoffee.com/anandbaburajan/c/11872378"
+            target="_blank"
+            className="italic font-normal text-base text-black/40 absolute left-8 leading-5 hover:underline underline-offset-4"
+          >
+            Just celebrated 20 years of meeting my soulmate and it was a blast
+            hunting down all our words. Awesome idea. Thanks!
+          </Link>
         </div>
         <div className="">
           <Image
             src="/demo.png"
-            className="rounded-lg mt-16"
+            className="rounded-lg origin-top-left ml-56 rotate-45"
             width={500}
             height={0}
             alt="Wordamour example"
