@@ -112,19 +112,23 @@ export default function Home() {
               </Dialog>
             </div>
           </div>
-          <div className="relative mt-20 w-[25rem]">
-            <Quote
-              className="h-5 w-5 rotate-180 absolute text-black/40"
-              strokeWidth={1.5}
-            />
-            <Link
-              href="https://buymeacoffee.com/anandbaburajan/c/11872378"
-              target="_blank"
-              className="italic font-normal text-base text-black/40 absolute left-8 leading-5 hover:underline underline-offset-4"
-            >
-              Just celebrated 20 years of meeting my soulmate and it was a blast
-              hunting down all our words. Awesome idea. Thanks!
-            </Link>
+          <div className="flex flex-row mt-20 w-[25rem] space-x-3">
+            <div>
+              <Quote
+                className="h-5 w-5 rotate-180 text-black/40"
+                strokeWidth={1.5}
+              />
+            </div>
+            <div>
+              <Link
+                href="https://buymeacoffee.com/anandbaburajan/c/11872378"
+                target="_blank"
+                className="italic font-normal text-base text-black/40 hover:underline underline-offset-4"
+              >
+                Just celebrated 20 years of meeting my soulmate and it was a
+                blast hunting down all our words. Awesome idea. Thanks!
+              </Link>
+            </div>
           </div>
         </div>
         <div className="flex w-[48rem]">
@@ -197,19 +201,23 @@ export default function Home() {
             </Drawer>
           </div>
         </div>
-        <div className="relative w-full mt-24 mb-64">
-          <Quote
-            className="h-5 w-5 rotate-180 absolute text-black/40"
-            strokeWidth={1.5}
-          />
-          <Link
-            href="https://buymeacoffee.com/anandbaburajan/c/11872378"
-            target="_blank"
-            className="italic font-normal text-base text-black/40 absolute left-8 leading-5 hover:underline underline-offset-4"
-          >
-            Just celebrated 20 years of meeting my soulmate and it was a blast
-            hunting down all our words. Awesome idea. Thanks!
-          </Link>
+        <div className="flex flex-row space-x-3 w-full mt-24 mb-16">
+          <div>
+            <Quote
+              className="h-5 w-5 rotate-180 text-black/40"
+              strokeWidth={1.5}
+            />
+          </div>
+          <div>
+            <Link
+              href="https://buymeacoffee.com/anandbaburajan/c/11872378"
+              target="_blank"
+              className="italic font-normal text-base text-black/40 hover:underline underline-offset-4"
+            >
+              Just celebrated 20 years of meeting my soulmate and it was a blast
+              hunting down all our words. Awesome idea. Thanks!
+            </Link>
+          </div>
         </div>
         <div className="">
           <Image
