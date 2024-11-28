@@ -16,6 +16,7 @@ const LogoW = (props: SVGProps<SVGSVGElement>) => (
         fontFamily: "&quot",
         InkscapeFontSpecification: "&quot",
         fill: "#000",
+        fillOpacity: "60%",
         stroke: "#f397fc",
         strokeWidth: 0,
         strokeOpacity: 0,

@@ -4,7 +4,7 @@ import LogoW from "@/components/logo-w";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { Instrument_Serif } from "next/font/google";
+import { DM_Serif_Display, Instrument_Serif } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +12,13 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   display: "swap",
   weight: ["400"],
+});
+
+const DMSerifDisplay = DM_Serif_Display({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
 export default function Home() {
@@ -50,7 +57,13 @@ export default function Home() {
             Surprise your <br />
             special someone
             <br />
-            with a Wordamour.
+            with a{" "}
+            <span
+              className={`${DMSerifDisplay.className} italic text-black/60`}
+            >
+              Wordamour
+            </span>
+            .
           </h1>
           <h3
             className={`flex font-normal text-xl text-black/40 mt-6 w-[36rem]`}
@@ -109,15 +122,19 @@ export default function Home() {
       </div>
       <div className="lg:hidden">
         <h1
-          className={`${instrumentSerif.className} text-5xl text-black mt-20 leading-[1.05]`}
+          className={`${instrumentSerif.className} text-[2.6rem] text-black mt-20 leading-[1.05]`}
         >
           Surprise your
           <br />
           special someone
           <br />
-          with a Wordamour.
+          with a{" "}
+          <span className={`${DMSerifDisplay.className} italic text-black/60`}>
+            Wordamour
+          </span>
+          .
         </h1>
-        <h3 className={`flex font-normal text-lg text-black/40 my-6`}>
+        <h3 className={`flex font-normal text-lg text-black/40 my-6 leading-6`}>
           Turn your cherished words into a beautiful, printed word search
           puzzle. Choose sweet nicknames, inside jokes, and treasured memories
           that mean the most to you both. A thoughtful gift that&apos;s uniquely
