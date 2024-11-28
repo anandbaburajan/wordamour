@@ -115,7 +115,7 @@ export default function Home() {
           <div className="relative mt-20 w-[25rem]">
             <Quote
               className="h-5 w-5 rotate-180 absolute text-black/40"
-              strokeWidth={2}
+              strokeWidth={1.5}
             />
             <Link
               href="https://buymeacoffee.com/anandbaburajan/c/11872378"
@@ -197,10 +197,10 @@ export default function Home() {
             </Drawer>
           </div>
         </div>
-        <div className="relative w-full mt-20 mb-48">
+        <div className="relative w-full mt-24 mb-64">
           <Quote
             className="h-5 w-5 rotate-180 absolute text-black/40"
-            strokeWidth={2}
+            strokeWidth={1.5}
           />
           <Link
             href="https://buymeacoffee.com/anandbaburajan/c/11872378"
@@ -214,7 +214,7 @@ export default function Home() {
         <div className="">
           <Image
             src="/demo.png"
-            className="rounded-lg origin-top-left ml-56 rotate-45"
+            className="rounded-lg origin-top-left ml-8 rotate-12"
             width={500}
             height={0}
             alt="Wordamour example"
