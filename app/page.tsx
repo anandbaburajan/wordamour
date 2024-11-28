@@ -74,7 +74,7 @@ export default function Home() {
             that mean the most to you both. A thoughtful gift that&apos;s
             uniquely yours.
           </h3>
-          <div className={`flex mt-6 items-center space-x-8`}>
+          <div className={`flex mt-8 items-center space-x-8`}>
             <div>
               <Link href="/app" className="h-fit w-fit">
                 <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-72 items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
@@ -159,7 +159,7 @@ export default function Home() {
           that mean the most to you both. A thoughtful gift that&apos;s uniquely
           yours.
         </h3>
-        <div className={`flex mt-6 items-center space-x-8`}>
+        <div className={`flex mt-8 items-center space-x-8`}>
           <div>
             <Link href="/app" className="h-fit w-fit">
               <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
