@@ -169,9 +169,8 @@ export default function Home() {
             </Popover>
             <Select onValueChange={setPaperSize}>
               <SelectTrigger
-                className={`${
-                  paperSize ? "" : "text-gray-500"
-                } flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
+                className={`${paperSize ? "" : "text-gray-500"
+                  } flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
               >
                 <SelectValue placeholder="Paper size" />
               </SelectTrigger>
@@ -196,10 +195,24 @@ export default function Home() {
             <Button
               className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
-                const words = wordsList.split(/\r?\n/).filter((e) => e !== "");
+
+                const words = wordsList
+                  .split(/\r?\n/)
+                  .map((e) => e.trim())
+                  .filter((e) => e !== "");
 
                 if (words.length === 0) {
                   toast.info("Please enter some words.");
+                  return;
+                }
+
+                if (words.some((word) => word.length === 1)) {
+                  toast.info("Please enter words with at least 2 letters");
+                  return;
+                }
+
+                if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
+                  toast.info("Please enter words with only letters");
                   return;
                 }
 
@@ -369,9 +382,8 @@ export default function Home() {
                 </Dialog>
               )}
               <Button
-                className={`${
-                  wordSearchObj ? "" : "invisible"
-                } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
+                className={`${wordSearchObj ? "" : "invisible"
+                  } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
                 onClick={() => {
                   setUniqueCoords(getUniqueCoordinates(wordSearchObj.words));
                   setWordsShown(!wordsShown);
@@ -412,16 +424,15 @@ export default function Home() {
                             {row.map((cell, cellIndex) => (
                               <td
                                 key={cellIndex}
-                                className={`${
-                                  wordsShown &&
+                                className={`${wordsShown &&
                                   uniqueCoords.some(
                                     (coord) =>
                                       coord.x === cellIndex &&
                                       coord.y === rowIndex
                                   )
-                                    ? "bg-lime-300/50"
-                                    : ""
-                                } p-2 text-gray-900`}
+                                  ? "bg-lime-300/50"
+                                  : ""
+                                  } p-2 text-gray-900`}
                               >
                                 {cell}
                               </td>
@@ -661,9 +672,8 @@ export default function Home() {
             </Popover>
             <Select onValueChange={setPaperSize}>
               <SelectTrigger
-                className={`${
-                  paperSize ? "" : "text-gray-500"
-                } text-base flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
+                className={`${paperSize ? "" : "text-gray-500"
+                  } text-base flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
               >
                 <SelectValue placeholder="Paper size" />
               </SelectTrigger>
@@ -748,10 +758,10 @@ export default function Home() {
               </DialogContent>
             </Dialog>
             {!title ||
-            !puzzleDate ||
-            !paperSize ||
-            wordsList.length === 0 ||
-            wordsList.split(/\r?\n/).length > 32 ? (
+              !puzzleDate ||
+              !paperSize ||
+              wordsList.length === 0 ||
+              wordsList.split(/\r?\n/).length > 32 ? (
               <Button
                 onClick={() => {
                   if (!title) {
@@ -771,10 +781,22 @@ export default function Home() {
 
                   const words = wordsList
                     .split(/\r?\n/)
+                    .map((e) => e.trim())
                     .filter((e) => e !== "");
+
 
                   if (words.length === 0) {
                     toast.info("Please enter some words.");
+                    return;
+                  }
+
+                  if (words.some((word) => word.length === 1)) {
+                    toast.info("Please enter words with at least 2 letters");
+                    return;
+                  }
+
+                  if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
+                    toast.info("Please enter words with only letters");
                     return;
                   }
 
