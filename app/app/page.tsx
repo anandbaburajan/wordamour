@@ -71,10 +71,6 @@ export default function Home() {
   const [wordsList, setWordsList] = useState<Tag[]>([]);
   const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
 
-  const handleWordsListChange = (event) => {
-    setWordsList(event.target.value);
-  };
-
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -138,7 +134,7 @@ export default function Home() {
 
   const getBigPuzzle = () => document.getElementById("big-puzzle");
   const getSmallPuzzle = () => document.getElementById("small-puzzle");
-  console.log(wordsList)
+
   return (
     <div className="h-[100dvh] overflow-x-hidden overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
       <main className="hidden lg:flex flex-row h-full">
@@ -195,14 +191,6 @@ export default function Home() {
             </Select>
           </div>
           <div className="p-10 flex flex-col w-full absolute bottom-0">
-
-            {/* <Textarea
-              value={wordsList}
-              onChange={handleWordsListChange}
-              className="h-[20rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
-              placeholder="Words (one per line)"
-            /> */}
-
             <TagInput
               placeholder="Enter words"
               tags={wordsList}
@@ -212,22 +200,15 @@ export default function Home() {
               minLength={3}
               showCount={true}
               truncate={10}
+              animation={"slideIn"}
               setTags={(newTags) => setWordsList(newTags)}
-              validateTag={(newTag) => {
-
-                if (!/^[a-zA-Z]+$/.test(newTag)) {
-                  toast.error("Only letters are allowed in the words.");
-                  return false;
-                }
-
-                if (newTag.length < 3) {
-                  toast.error("Words should have at least 3 letters.");
-                  return false;
-                }
-
-                return true;
+              validateTag={validateTag}
+              size={"md"}
+              shape={"rounded"}
+              styleClasses={{
+                inlineTagsContainer: "backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium flex flex-wrap mb-2 gap-1 p-2 items-start",
+                input: 'border-none p-2 mt-3',
               }}
-
             />
 
             <Button
@@ -244,7 +225,7 @@ export default function Home() {
 
                 if (wordsList.length >= 32) {
                   toast.error("Only 32 words are allowed.");
-                  return false;
+                  return;
                 }
 
 
@@ -652,7 +633,7 @@ export default function Home() {
         </div>
       </main>
 
-      <main className="flex lg:hidden h-full flex-col w-full">
+      <main className="flex lg:hidden scroo  h-full flex-col w-full">
         <MeshGradientBackground />
         <div className="flex flex-col min-h-full p-10 justify-between border-gray-200">
           <div className="flex flex-col h-full w-full">
@@ -717,11 +698,30 @@ export default function Home() {
             </Select>
           </div>
           <div className="flex flex-col w-full">
-            <Textarea
-              value={wordsList}
-              onChange={handleWordsListChange}
-              className="h-[20rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
-              placeholder="Words (one per line)"
+            <TagInput
+              placeholder="Enter words"
+              tags={wordsList}
+              activeTagIndex={activeTagIndex}
+              setActiveTagIndex={setActiveTagIndex}
+              maxTags={32}
+              minLength={3}
+              showCount={true}
+              truncate={10}
+              animation={"slideIn"}
+              setTags={(newTags) => setWordsList(newTags)}
+              validateTag={validateTag}
+              size={"md"}
+              shape={"rounded"}
+              inlineTags={false}
+              inputFieldPosition={
+                "bottom"
+              }
+              styleClasses={{
+                input: 'backdrop-blur-2xl bg-gray-400/10 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 rounded-t-none placeholder:font-medium flex flex-wrap mb-2 gap-1 p-2 items-start',
+                tagList: {
+                  container: `backdrop-blur-2xl bg-gray-400/10 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 rounded-b-none placeholder:font-medium flex flex-wrap gap-1 ${wordsList.length != 0 && "p-2"} items-start`
+                }
+              }}
             />
             <Dialog modal={false}>
               <DialogClose ref={dialogSmallRef}></DialogClose>
@@ -789,24 +789,8 @@ export default function Home() {
             {!title ||
               !puzzleDate ||
               !paperSize ||
-              wordsList
-                .split(/\r?\n/)
-                .filter((e) => e !== "")
-                .map((e) => e.replace(/\s+/g, "")).length === 0 ||
-              wordsList
-                .split(/\r?\n/)
-                .filter((e) => e !== "")
-                .map((e) => e.replace(/\s+/g, ""))
-                .some((word) => word.length === 1) ||
-              wordsList
-                .split(/\r?\n/)
-                .filter((e) => e !== "")
-                .map((e) => e.replace(/\s+/g, ""))
-                .some((word) => !/^[a-zA-Z]+$/.test(word)) ||
-              wordsList
-                .split(/\r?\n/)
-                .filter((e) => e !== "")
-                .map((e) => e.replace(/\s+/g, "")).length > 32 ? (
+              wordsList.length === 0 ||
+              wordsList.length > 32 ? (
               <Button
                 onClick={() => {
                   if (!title) {
@@ -825,22 +809,11 @@ export default function Home() {
                   }
 
                   const words = wordsList
-                    .split(/\r?\n/)
-                    .filter((e) => e !== "")
-                    .map((e) => e.replace(/\s+/g, ""));
+                    .map((tag) => tag.text)
+                    .map((word) => word.replace(/\s+/g, ""));
 
-                  if (words.length === 0) {
-                    toast.info("Please enter some words.");
-                    return;
-                  }
-
-                  if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
-                    toast.info("Only letters are allowed in the words.");
-                    return;
-                  }
-
-                  if (words.some((word) => word.length === 1)) {
-                    toast.info("Words should have at least 2 letters.");
+                  if (words.length === 0 || words.length < 2) {
+                    toast.info("Please enter at least two words.");
                     return;
                   }
 
@@ -860,9 +833,8 @@ export default function Home() {
                     id="download-pdf-mobile"
                     onClick={() => {
                       const words = wordsList
-                        .split(/\r?\n/)
-                        .filter((e) => e !== "")
-                        .map((e) => e.replace(/\s+/g, ""));
+                        .map((tag) => tag.text)
+                        .map((word) => word.replace(/\s+/g, ""));
 
                       dialogSmallRef.current?.click();
 
@@ -1063,3 +1035,18 @@ function getUniqueCoordinates(data) {
     return { x, y };
   });
 }
+
+function validateTag(text: string) {
+
+  if (!/^[a-zA-Z]+$/.test(text)) {
+    toast.error("Only letters are allowed in the words.");
+    return false;
+  }
+
+  if (text.length < 3) {
+    toast.error("Words should have at least 3 letters.");
+    return false;
+  }
+
+  return true;
+};
