@@ -59,6 +59,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import generatePDF, { Resolution } from "react-to-pdf";
 import { toast } from "sonner";
+import { Tag, TagInput } from 'emblor';
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -67,7 +68,8 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export default function Home() {
-  const [wordsList, setWordsList] = useState("");
+  const [wordsList, setWordsList] = useState<Tag[]>([]);
+  const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
 
   const handleWordsListChange = (event) => {
     setWordsList(event.target.value);
@@ -136,7 +138,7 @@ export default function Home() {
 
   const getBigPuzzle = () => document.getElementById("big-puzzle");
   const getSmallPuzzle = () => document.getElementById("small-puzzle");
-
+  console.log(wordsList)
   return (
     <div className="h-[100dvh] overflow-x-hidden overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
       <main className="hidden lg:flex flex-row h-full">
@@ -176,9 +178,8 @@ export default function Home() {
             </Popover>
             <Select onValueChange={setPaperSize}>
               <SelectTrigger
-                className={`${
-                  paperSize ? "" : "text-gray-500"
-                } flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
+                className={`${paperSize ? "" : "text-gray-500"
+                  } flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
               >
                 <SelectValue placeholder="Paper size" />
               </SelectTrigger>
@@ -194,39 +195,58 @@ export default function Home() {
             </Select>
           </div>
           <div className="p-10 flex flex-col w-full absolute bottom-0">
-            <Textarea
+
+            {/* <Textarea
               value={wordsList}
               onChange={handleWordsListChange}
               className="h-[20rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
               placeholder="Words (one per line)"
+            /> */}
+
+            <TagInput
+              placeholder="Enter words"
+              tags={wordsList}
+              activeTagIndex={activeTagIndex}
+              setActiveTagIndex={setActiveTagIndex}
+              maxTags={32}
+              minLength={3}
+              showCount={true}
+              truncate={10}
+              setTags={(newTags) => setWordsList(newTags)}
+              validateTag={(newTag) => {
+
+                if (!/^[a-zA-Z]+$/.test(newTag)) {
+                  toast.error("Only letters are allowed in the words.");
+                  return false;
+                }
+
+                if (newTag.length < 3) {
+                  toast.error("Words should have at least 3 letters.");
+                  return false;
+                }
+
+                return true;
+              }}
+
             />
+
             <Button
               className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
                 const words = wordsList
-                  .split(/\r?\n/)
-                  .filter((e) => e !== "")
-                  .map((e) => e.replace(/\s+/g, ""));
+                  .map((tag) => tag.text)
+                  .map((word) => word.replace(/\s+/g, ""));
 
-                if (words.length === 0) {
-                  toast.info("Please enter some words.");
+                if (words.length === 0 || words.length < 2) {
+                  toast.info("Please enter at least two words.");
                   return;
                 }
 
-                if (words.some((word) => !/^[a-zA-Z]+$/.test(word))) {
-                  toast.info("Only letters are allowed in the words.");
-                  return;
+                if (wordsList.length >= 32) {
+                  toast.error("Only 32 words are allowed.");
+                  return false;
                 }
 
-                if (words.some((word) => word.length === 1)) {
-                  toast.info("Words should have at least 2 letters.");
-                  return;
-                }
-
-                if (words.length > 32) {
-                  toast.info("Only 32 words are allowed.");
-                  return;
-                }
 
                 sheetBigRef.current?.click();
 
@@ -389,9 +409,8 @@ export default function Home() {
                 </Dialog>
               )}
               <Button
-                className={`${
-                  wordSearchObj ? "" : "invisible"
-                } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
+                className={`${wordSearchObj ? "" : "invisible"
+                  } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
                 onClick={() => {
                   setUniqueCoords(getUniqueCoordinates(wordSearchObj.words));
                   setWordsShown(!wordsShown);
@@ -432,16 +451,15 @@ export default function Home() {
                             {row.map((cell, cellIndex) => (
                               <td
                                 key={cellIndex}
-                                className={`${
-                                  wordsShown &&
+                                className={`${wordsShown &&
                                   uniqueCoords.some(
                                     (coord) =>
                                       coord.x === cellIndex &&
                                       coord.y === rowIndex
                                   )
-                                    ? "bg-lime-300/50"
-                                    : ""
-                                } p-2 text-gray-900`}
+                                  ? "bg-lime-300/50"
+                                  : ""
+                                  } p-2 text-gray-900`}
                               >
                                 {cell}
                               </td>
@@ -633,6 +651,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+
       <main className="flex lg:hidden h-full flex-col w-full">
         <MeshGradientBackground />
         <div className="flex flex-col min-h-full p-10 justify-between border-gray-200">
@@ -681,9 +700,8 @@ export default function Home() {
             </Popover>
             <Select onValueChange={setPaperSize}>
               <SelectTrigger
-                className={`${
-                  paperSize ? "" : "text-gray-500"
-                } text-base flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
+                className={`${paperSize ? "" : "text-gray-500"
+                  } text-base flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none`}
               >
                 <SelectValue placeholder="Paper size" />
               </SelectTrigger>
@@ -769,26 +787,26 @@ export default function Home() {
               </DialogContent>
             </Dialog>
             {!title ||
-            !puzzleDate ||
-            !paperSize ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, "")).length === 0 ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, ""))
-              .some((word) => word.length === 1) ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, ""))
-              .some((word) => !/^[a-zA-Z]+$/.test(word)) ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, "")).length > 32 ? (
+              !puzzleDate ||
+              !paperSize ||
+              wordsList
+                .split(/\r?\n/)
+                .filter((e) => e !== "")
+                .map((e) => e.replace(/\s+/g, "")).length === 0 ||
+              wordsList
+                .split(/\r?\n/)
+                .filter((e) => e !== "")
+                .map((e) => e.replace(/\s+/g, ""))
+                .some((word) => word.length === 1) ||
+              wordsList
+                .split(/\r?\n/)
+                .filter((e) => e !== "")
+                .map((e) => e.replace(/\s+/g, ""))
+                .some((word) => !/^[a-zA-Z]+$/.test(word)) ||
+              wordsList
+                .split(/\r?\n/)
+                .filter((e) => e !== "")
+                .map((e) => e.replace(/\s+/g, "")).length > 32 ? (
               <Button
                 onClick={() => {
                   if (!title) {
