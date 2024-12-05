@@ -51,6 +51,7 @@ import {
   Eye,
   EyeOff,
   Flag,
+  Heart,
   Mail,
   Shuffle,
 } from "lucide-react";
@@ -147,6 +148,7 @@ export default function Home() {
               className="flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
               placeholder="Title"
               onChange={handleTitleChange}
+              autoFocus={true}
             />
             <Popover>
               <PopoverClose ref={popOverBigRef}></PopoverClose>
@@ -358,10 +360,12 @@ export default function Home() {
                   <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
                     <p>Your Wordamour has been downloaded!</p>
                     <p>
-                      There are two pages to be printed — the first one with the
-                      word search puzzle and the second one with the solutions
-                      (for you to help them with clues). I would highly
-                      recommend folding the first page into an{" "}
+                      There are{" "}
+                      <span className="text-green-500">two pages</span> to be
+                      printed — the first one with the word search puzzle and
+                      the second one with the solutions (for you to help them
+                      with clues). I would highly recommend folding the first
+                      page into an{" "}
                       <Link
                         href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
                         className="underline underline-offset-4"
@@ -378,12 +382,12 @@ export default function Home() {
                         className="underline underline-offset-4 inline-flex items-center"
                       >
                         buying me a coffee{" "}
-                        <Coffee
-                          className="h-5 w-5 ml-1 text-[#FEDD03]"
+                        <Heart
+                          className="h-4 w-4 ml-1 text-red-500"
                           strokeWidth={2}
                         />
                       </Link>
-                      !
+                      .
                     </p>
                   </DialogContent>
                 </Dialog>
@@ -468,7 +472,7 @@ export default function Home() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="end"
-                  className="font-[family-name:var(--font-geist-sans)] rounded-lg"
+                  className="font-[family-name:var(--font-geist-sans)] rounded-lg shadow-sm"
                 >
                   <DropdownMenuItem>
                     <Link
@@ -831,7 +835,7 @@ export default function Home() {
                     return;
                   }
                 }}
-                className="mt-10 text-base items-center transition duration-200 bg-gradient-to-r from-[#ff5858] to-[#f09819] hover:from-[#fa6969] hover:to-[#fbaa38] h-4 w-full p-4 rounded-xl font-medium shadow-none text-white"
+                className="mt-10 h-4 p-4 text-white text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none"
               >
                 Download
               </Button>
@@ -877,10 +881,11 @@ export default function Home() {
                 <DialogContent className="w-[calc(100vw-5rem)] rounded-xl font-[family-name:var(--font-geist-sans)]">
                   <p>Your Wordamour has been downloaded!</p>
                   <p>
-                    There are two pages to be printed — the first one with the
-                    word search puzzle and the second one with the solutions
-                    (for you to help them with clues). I would highly recommend
-                    folding the first page into an{" "}
+                    There are <span className="text-green-500">two pages</span>{" "}
+                    to be printed — the first one with the word search puzzle
+                    and the second one with the solutions (for you to help them
+                    with clues). I would highly recommend folding the first page
+                    into an{" "}
                     <Link
                       href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
                       className="underline underline-offset-4"
@@ -897,8 +902,8 @@ export default function Home() {
                       className="underline underline-offset-4 inline-flex items-center"
                     >
                       buying me a coffee{" "}
-                      <Coffee
-                        className="h-5 w-5 ml-1 text-[#FEDD03]"
+                      <Heart
+                        className="h-4 w-4 ml-1 text-red-500"
                         strokeWidth={2}
                       />
                     </Link>
