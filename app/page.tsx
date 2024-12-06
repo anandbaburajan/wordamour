@@ -1,6 +1,6 @@
 import GitHubLogoSVG from "@/components/github-logo";
 import MeshGradientBackground from "@/components/gradient";
-import LogoW from "@/components/logo-w";
+import LogoPlain from "@/components/logo-plain";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
@@ -28,7 +28,7 @@ export default function Home() {
       <MeshGradientBackground />
       <div className="flex flex-row justify-between items-center w-full h-[2rem]">
         <Link href="/">
-          <LogoW className="w-[1.2rem]" />
+          <LogoPlain className="w-[1.3rem]" />
         </Link>
         <div className="flex flex-row items-center">
           <Link

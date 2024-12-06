@@ -9,7 +9,7 @@
    id="svg1"
    xml:space="preserve"
    inkscape:version="1.3.2 (091e20e, 2023-11-25)"
-   sodipodi:docname="drawing.svg"
+   sodipodi:docname="hma.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -62,8 +62,8 @@
        height="264.58334"
        x="-4.2529296e-06"
        y="-5.0862632e-06"
-       ry="63.488182"
-       rx="63.488182" /><path
+       ry="0"
+       rx="0" /><path
        id="rect9"
        style="fill:#000000;stroke:#272727;stroke-width:0;stroke-linecap:round"
        d="M 56.813068,50.770551 42.487844,65.095774 v 76.904916 l 82.348466,82.34846 7.45536,7.45536 7.45536,-7.45536 82.34846,-82.34846 V 65.095774 L 207.77026,50.770551 H 187.51155 L 132.29167,105.99047 77.071779,50.770551 Z m 4.367692,10.543025 h 11.523327 l 54.316063,54.316114 v 95.99259 L 53.031386,137.63351 V 69.462433 Z m 130.69848,0 h 11.52333 l 8.14937,8.148857 v 68.171077 l -73.98876,73.98877 v -95.99259 z" /></g></svg>
