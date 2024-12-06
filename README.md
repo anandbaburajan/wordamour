@@ -1,5 +1,5 @@
 <img
-   src="./public/icon.svg"
+   src="./public/logo-rounded.svg"
    alt="Wordamour logo"
    height="40px"
    width="40px"
