@@ -1,6 +1,7 @@
 "use client";
 
 import MeshGradientBackground from "@/components/gradient";
+import LogoPlain from "@/components/logo-plain";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -45,16 +46,7 @@ import WordSearch from "@blex41/word-search";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
 import dayjs from "dayjs";
-import {
-  Coffee,
-  Download,
-  Eye,
-  EyeOff,
-  Flag,
-  Heart,
-  Mail,
-  Shuffle,
-} from "lucide-react";
+import { Coffee, Download, Flag, Mail, Shuffle } from "lucide-react";
 import { Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -85,8 +77,6 @@ export default function Home() {
   const [puzzleDate, setPuzzleDate] = useState<Date>();
 
   const [paperSize, setPaperSize] = useState("");
-
-  const [wordsShown, setWordsShown] = useState(false);
 
   const [uniqueCoords, setUniqueCoords] = useState([]);
 
@@ -379,37 +369,17 @@ export default function Home() {
                         href="https://www.buymeacoffee.com/anandbaburajan"
                         className="underline underline-offset-4 inline-flex items-center"
                       >
-                        buying me a coffee{" "}
-                        <Heart
-                          className="h-4 w-4 ml-1 text-red-500"
-                          strokeWidth={2}
+                        buying me a coffee
+                        <LogoPlain
+                          className="w-[1rem] ml-1.5"
+                          color="#EF4444"
+                          opacity="100%"
                         />
                       </Link>
-                      .
                     </p>
                   </DialogContent>
                 </Dialog>
               )}
-              <Button
-                className={`${
-                  wordSearchObj ? "" : "invisible"
-                } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
-                onClick={() => {
-                  setUniqueCoords(getUniqueCoordinates(wordSearchObj.words));
-                  setWordsShown(!wordsShown);
-                }}
-              >
-                {!wordsShown && (
-                  <>
-                    <Eye className="h-3 w-3" strokeWidth={2} />
-                  </>
-                )}
-                {wordsShown && (
-                  <>
-                    <EyeOff className="h-5 w-5" strokeWidth={2} />
-                  </>
-                )}
-              </Button>
             </div>
             <div className="flex justify-center w-full h-screen bg-white flex-col items-center">
               <div className="flex justify-center mb-4">
@@ -435,15 +405,14 @@ export default function Home() {
                               <td
                                 key={cellIndex}
                                 className={`${
-                                  wordsShown &&
                                   uniqueCoords.some(
                                     (coord) =>
                                       coord.x === cellIndex &&
                                       coord.y === rowIndex
                                   )
-                                    ? "bg-lime-300/50"
-                                    : ""
-                                } p-2 text-gray-900`}
+                                    ? "text-gray-900"
+                                    : "text-gray-300"
+                                } p-2`}
                               >
                                 {cell}
                               </td>
@@ -537,7 +506,7 @@ export default function Home() {
                 </h1>
               </div>
               <div className="flex justify-center">
-                <h6 className="text-sm mb-16 text-gray-400">
+                <h6 className="text-sm mb-16 text-gray-400 font-light">
                   {puzzleDate
                     ? dayjs(puzzleDate).format("MMM DD, YYYY")
                     : "Date"}
@@ -589,7 +558,7 @@ export default function Home() {
                 </h1>
               </div>
               <div className="flex justify-center">
-                <h6 className="text-sm mb-16 text-gray-400">
+                <h6 className="text-sm mb-16 text-gray-400 font-light">
                   {puzzleDate
                     ? dayjs(puzzleDate).format("MMM DD, YYYY")
                     : "Date"}
@@ -612,12 +581,13 @@ export default function Home() {
                             <td
                               key={cellIndex}
                               className={cn(
-                                "text-gray-900",
                                 uniqueCoords.some(
                                   (coord) =>
                                     coord.x === cellIndex &&
                                     coord.y === rowIndex
-                                ) && "bg-gray-300/50",
+                                )
+                                  ? "text-gray-900"
+                                  : "text-gray-300",
                                 paperSize === "A4" && "p-2",
                                 paperSize === "letter" && "p-2",
                                 paperSize === "A5" && "p-1.5"
@@ -898,13 +868,13 @@ export default function Home() {
                       href="https://www.buymeacoffee.com/anandbaburajan"
                       className="underline underline-offset-4 inline-flex items-center"
                     >
-                      buying me a coffee{" "}
-                      <Heart
-                        className="h-4 w-4 ml-1 text-red-500"
-                        strokeWidth={2}
+                      buying me a coffee
+                      <LogoPlain
+                        className="w-[1rem] ml-1.5"
+                        color="#EF4444"
+                        opacity="100%"
                       />
                     </Link>
-                    !
                   </p>
                 </DialogContent>
               </Dialog>
@@ -934,7 +904,7 @@ export default function Home() {
               </h1>
             </div>
             <div className="flex justify-center">
-              <h6 className="text-sm mb-16 text-gray-400">
+              <h6 className="text-sm mb-16 text-gray-400 font-light">
                 {puzzleDate ? dayjs(puzzleDate).format("MMM DD, YYYY") : "Date"}
               </h6>
             </div>
@@ -984,7 +954,7 @@ export default function Home() {
               </h1>
             </div>
             <div className="flex justify-center">
-              <h6 className="text-sm mb-16 text-gray-400">
+              <h6 className="text-sm mb-16 text-gray-400 font-light">
                 {puzzleDate ? dayjs(puzzleDate).format("MMM DD, YYYY") : "Date"}
               </h6>
             </div>
@@ -1005,11 +975,12 @@ export default function Home() {
                           <td
                             key={cellIndex}
                             className={cn(
-                              "text-gray-900",
                               uniqueCoords.some(
                                 (coord) =>
                                   coord.x === cellIndex && coord.y === rowIndex
-                              ) && "bg-gray-300/50",
+                              )
+                                ? "text-gray-900"
+                                : "text-gray-300",
                               paperSize === "A4" && "p-2",
                               paperSize === "letter" && "p-2",
                               paperSize === "A5" && "p-1.5"

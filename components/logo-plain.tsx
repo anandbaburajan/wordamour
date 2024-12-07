@@ -3,19 +3,18 @@ import { SVGProps } from "react";
 const LogoPlain = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 179.608 181.034"
+    viewBox="0 0 188.622 186.072"
     {...props}
   >
     <path
-      d="M56.813 41.775 42.488 56.1v76.905l82.348 82.348 7.456 7.456 7.455-7.456 82.348-82.348V56.1L207.77 41.775h-20.258l-55.22 55.22-55.22-55.22Zm4.368 10.543h11.523l54.316 54.316v95.992l-73.989-73.988V60.467Zm130.698 0h11.524l8.149 8.149v68.17l-73.989 73.99v-95.993Z"
+      d="M54.936 39.255 37.98 56.211v74.806l94.31 94.31 94.312-94.31V56.21l-16.955-16.956h-30.582L132.292 86.03 85.518 39.255Zm4.156 10.036h22.463l50.737 50.736 50.737-50.736h22.462l11.077 11.076v66.687l-84.276 84.275-84.276-84.275V60.367Z"
       style={{
-        fill: "#000",
-        fillOpacity: "50%",
-        stroke: "#272727",
+        fill: props.color,
+        fillOpacity: props.opacity,
         strokeWidth: 0,
         strokeLinecap: "round",
       }}
-      transform="translate(-42.488 -41.775)"
+      transform="translate(-37.98 -39.255)"
     />
   </svg>
 );

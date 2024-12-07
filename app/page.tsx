@@ -28,7 +28,7 @@ export default function Home() {
       <MeshGradientBackground />
       <div className="flex flex-row justify-between items-center w-full h-[2rem]">
         <Link href="/">
-          <LogoPlain className="w-[1.3rem]" />
+          <LogoPlain className="w-[1.3rem]" color="#000" opacity="80%" />
         </Link>
         <div className="flex flex-row items-center">
           <Link
