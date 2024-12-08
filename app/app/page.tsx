@@ -350,17 +350,17 @@ export default function Home() {
                   <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
                     <p>Your Wordamour has been downloaded!</p>
                     <p>
-                      There are two pages to be printed — the first one with the
-                      word search puzzle and the second one with the solutions
-                      (for you to help them with clues). I would highly
-                      recommend folding the first page into an{" "}
+                      Next, print the two pages — the first one with the word
+                      search puzzle and the second one with the solutions (for
+                      you to help them with clues). Then fold the first page
+                      into an{" "}
                       <Link
                         href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
                         className="underline underline-offset-4"
                       >
                         origami heart
-                      </Link>{" "}
-                      for gifting!
+                      </Link>
+                      !
                     </p>
                     <p>
                       If Wordamour brings a smile to your partner&apos;s face,
@@ -849,17 +849,16 @@ export default function Home() {
                 <DialogContent className="w-[calc(100vw-5rem)] rounded-xl font-[family-name:var(--font-geist-sans)]">
                   <p>Your Wordamour has been downloaded!</p>
                   <p>
-                    There are two pages to be printed — the first one with the
-                    word search puzzle and the second one with the solutions
-                    (for you to help them with clues). I would highly recommend
-                    folding the first page into an{" "}
+                    Next, print the two pages — the first one with the word
+                    search puzzle and the second one with the solutions (for you
+                    to help them with clues). Then fold the first page into an{" "}
                     <Link
                       href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
                       className="underline underline-offset-4"
                     >
                       origami heart
-                    </Link>{" "}
-                    for gifting!
+                    </Link>
+                    !
                   </p>
                   <p>
                     If Wordamour brings a smile to your partner&apos;s face,

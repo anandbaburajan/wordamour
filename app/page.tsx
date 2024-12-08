@@ -133,7 +133,7 @@ export default function Home() {
         <div className="flex w-[48rem]">
           <Image
             src="/demo.png"
-            className="rounded-lg origin-top-left rotate-12"
+            className="origin-top-left rotate-12 rounded-lg shadow-xl"
             width={500}
             height={0}
             alt="Wordamour example"
@@ -217,7 +217,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="">
+        <div>
           <Image
             src="/demo.png"
             className="rounded-lg origin-top-left ml-8 rotate-12"
