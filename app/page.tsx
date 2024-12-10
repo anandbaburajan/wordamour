@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="w-screen lg:h-screen h-[100dvh] lg:overflow-y-hidden overflow-x-hidden flex flex-col font-[family-name:var(--font-geist-sans)] p-8 lg:p-5">
       <MeshGradientBackground />
-      <div className="flex flex-row justify-between items-center w-full h-[2rem]">
+      <div className="flex flex-row justify-between items-center w-full h-[2rem] z-50">
         <Link href="/">
           <LogoPlain className="w-[1.3rem]" color="#000" opacity="80%" />
         </Link>
