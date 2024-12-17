@@ -199,7 +199,18 @@ export default function Home() {
             </Drawer>
           </div>
         </div>
-        <div className="flex flex-row space-x-3 w-full mt-24 mb-16">
+        <div className="mt-24 mb-16">
+          <Image
+            src="/demo.png"
+            className="rounded-lg origin-top-left ml-8 rotate-12"
+            width={500}
+            height={0}
+            alt="Wordamour example"
+            priority={true}
+            unoptimized={true}
+          ></Image>
+        </div>
+        <div className="flex flex-row space-x-3 w-full mt-36 mb-5">
           <div>
             <Quote
               className="h-5 w-5 rotate-180 text-black/40"
@@ -216,17 +227,6 @@ export default function Home() {
               hunting down all our words. Awesome idea. Thanks!
             </Link>
           </div>
-        </div>
-        <div>
-          <Image
-            src="/demo.png"
-            className="rounded-lg origin-top-left ml-8 rotate-12"
-            width={500}
-            height={0}
-            alt="Wordamour example"
-            priority={true}
-            unoptimized={true}
-          ></Image>
         </div>
       </div>
     </div>
