@@ -1,6 +1,7 @@
 import GitHubLogoSVG from "@/components/github-logo";
 import MeshGradientBackground from "@/components/gradient";
 import LogoPlain from "@/components/logo-plain";
+import Testimonial from "@/components/testimonial";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
@@ -119,14 +120,7 @@ export default function Home() {
               />
             </div>
             <div>
-              <Link
-                href="https://buymeacoffee.com/anandbaburajan/c/11872378"
-                target="_blank"
-                className="italic font-normal text-base text-black/40 hover:underline underline-offset-4"
-              >
-                Just celebrated 20 years of meeting my soulmate and it was a
-                blast hunting down all our words. Awesome idea. Thanks!
-              </Link>
+              <Testimonial />
             </div>
           </div>
         </div>
@@ -218,14 +212,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <Link
-              href="https://buymeacoffee.com/anandbaburajan/c/11872378"
-              target="_blank"
-              className="italic font-normal text-base text-black/40 hover:underline underline-offset-4"
-            >
-              Just celebrated 20 years of meeting my soulmate and it was a blast
-              hunting down all our words. Awesome idea. Thanks!
-            </Link>
+            <Testimonial />
           </div>
         </div>
       </div>
