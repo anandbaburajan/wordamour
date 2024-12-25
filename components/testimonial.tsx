@@ -6,6 +6,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 
 const Testimonial = () => (
   <Carousel
@@ -13,6 +14,7 @@ const Testimonial = () => (
       Autoplay({
         delay: 5000,
       }),
+      Fade(),
     ]}
   >
     <CarouselContent>

@@ -23,6 +23,7 @@
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.13",
     "embla-carousel-autoplay": "^8.5.1",
+    "embla-carousel-fade": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.456.0",
