@@ -96,7 +96,8 @@ export default function Home() {
                     <li>Easy-to-use word search puzzle maker</li>
                     <li>25+ questions to help you come up with words</li>
                     <li>Beautiful, high-quality PDF (A4/A5/Letter) download</li>
-                    <li>No sign-up required and your data is never stored</li>
+                    <li>No sign-up required</li>
+                    <li>Your data never leaves your browser</li>
                     <li>
                       Free (you can{" "}
                       <Link
@@ -177,7 +178,8 @@ export default function Home() {
                   <li>Easy-to-use word search puzzle maker</li>
                   <li>25+ questions to help you with words</li>
                   <li>Beautiful, high-quality PDF download</li>
-                  <li>No sign-up and your data is never stored</li>
+                  <li>No sign-up required</li>
+                  <li>Your data never leaves your browser</li>
                   <li>
                     Free (
                     <Link
