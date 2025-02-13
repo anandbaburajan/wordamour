@@ -28,6 +28,9 @@ const Testimonial = () => (
       <CarouselItem className="italic font-normal text-base text-black/40">
         Such a fun trip down memory lane. My partner loved it. Thanks for this!
       </CarouselItem>
+      <CarouselItem className="italic font-normal text-base text-black/40">
+        Thanks for saving my valentines!
+      </CarouselItem>
     </CarouselContent>
   </Carousel>
 );

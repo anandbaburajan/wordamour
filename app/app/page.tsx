@@ -411,7 +411,7 @@ export default function Home() {
                                       coord.y === rowIndex
                                   )
                                     ? "text-gray-900"
-                                    : "text-gray-300"
+                                    : "unused-characters"
                                 } p-2`}
                               >
                                 {cell}

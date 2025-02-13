@@ -82,3 +82,19 @@ body {
 .letter-bg {
   background-image: url("/letter-bg.jpg");
 }
+
+@keyframes textColorChange {
+  0% {
+    color: black;
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    color: black;
+  }
+}
+
+.unused-characters {
+  animation: textColorChange 5s infinite alternate;
+}
