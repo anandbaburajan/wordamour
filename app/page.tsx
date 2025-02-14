@@ -213,7 +213,7 @@ export default function Home() {
               strokeWidth={1.5}
             />
           </div>
-          <div>
+          <div className="w-[90%]">
             <Testimonial />
           </div>
         </div>
