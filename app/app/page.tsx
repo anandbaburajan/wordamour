@@ -59,7 +59,7 @@ const instrumentSerif = Instrument_Serif({
   weight: ["400"],
 });
 
-export default function Home() {
+export default function App() {
   const [wordsList, setWordsList] = useState("");
 
   const handleWordsListChange = (event) => {
@@ -89,7 +89,6 @@ export default function Home() {
   const dialogSmallRef = useRef<HTMLButtonElement | null>(null);
 
   const options = {
-    // default is `save`
     method: "save",
     filename: "wordamour.pdf",
     // default is Resolution.MEDIUM = 3, which should be enough, higher values
@@ -351,16 +350,7 @@ export default function Home() {
                     <p>Your Wordamour has been downloaded!</p>
                     <p>
                       Next, print the two pages — the first one with the word
-                      search puzzle and the second one with the solutions (for
-                      you to help them with clues). Then fold the first page
-                      into an{" "}
-                      <Link
-                        href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
-                        className="underline underline-offset-4"
-                      >
-                        origami heart
-                      </Link>
-                      !
+                      search puzzle and the second one with the solutions.
                     </p>
                     <p>
                       If Wordamour brings a smile to your partner&apos;s face,
@@ -850,15 +840,7 @@ export default function Home() {
                   <p>Your Wordamour has been downloaded!</p>
                   <p>
                     Next, print the two pages — the first one with the word
-                    search puzzle and the second one with the solutions (for you
-                    to help them with clues). Then fold the first page into an{" "}
-                    <Link
-                      href="https://www.youtube.com/watch?v=jizmI8xUA6Q"
-                      className="underline underline-offset-4"
-                    >
-                      origami heart
-                    </Link>
-                    !
+                    search puzzle and the second one with the solutions.
                   </p>
                   <p>
                     If Wordamour brings a smile to your partner&apos;s face,
