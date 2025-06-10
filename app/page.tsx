@@ -1,15 +1,20 @@
-import GitHubLogoSVG from "@/components/github-logo";
 import MeshGradientBackground from "@/components/gradient";
 import InstaWarning from "@/components/insta-warning";
 import LogoPlain from "@/components/logo-plain";
 import Testimonial from "@/components/testimonial";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { Quote } from "lucide-react";
 import { DM_Serif_Display, Instrument_Serif } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -34,12 +39,6 @@ export default function Home() {
         </Link>
         <div className="flex flex-row items-center">
           <Link
-            href="https://github.com/anandbaburajan/wordamour"
-            className="hidden lg:block lg:mr-8"
-          >
-            <GitHubLogoSVG className="h-[1rem] w-[1rem]" />
-          </Link>
-          <Link
             href="https://www.buymeacoffee.com/anandbaburajan"
             className="h-fit"
           >
@@ -47,7 +46,7 @@ export default function Home() {
               className="bg-gray-600/10 hover:bg-gray-600/15 font-medium text-sm transition duration-200 rounded-xl shadow-none text-gray-600"
               size={"sm"}
             >
-              Buy me a coffee?
+              Buy me a coffee
             </Button>
           </Link>
         </div>
@@ -91,6 +90,9 @@ export default function Home() {
                     Features
                   </span>
                 </DialogTrigger>
+                <VisuallyHidden>
+                  <DialogTitle></DialogTitle>
+                </VisuallyHidden>
                 <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
                   <ul
                     className={`marker:text-gray-500 list-disc marker:font-bold space-y-2`}
@@ -173,6 +175,9 @@ export default function Home() {
                   Features
                 </span>
               </DrawerTrigger>
+              <VisuallyHidden>
+                <DialogTitle></DialogTitle>
+              </VisuallyHidden>
               <DrawerContent>
                 <ul
                   className={`marker:text-gray-500 list-disc marker:font-bold space-y-2 m-10`}

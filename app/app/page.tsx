@@ -7,6 +7,7 @@ import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogClose,
+  DialogTitle,
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
@@ -33,7 +34,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
@@ -52,6 +52,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import generatePDF, { Resolution } from "react-to-pdf";
 import { toast } from "sonner";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -87,6 +88,8 @@ export default function App() {
   const sheetBigRef = useRef<HTMLButtonElement | null>(null);
 
   const dialogSmallRef = useRef<HTMLButtonElement | null>(null);
+
+  const [animatedTableRenderKey, setAnimatedTableRenderKey] = useState(0);
 
   const options = {
     method: "save",
@@ -237,6 +240,8 @@ export default function App() {
                 setWordSearchObj(ws);
 
                 setUniqueCoords(getUniqueCoordinates(ws.words));
+
+                setAnimatedTableRenderKey((prev) => prev + 1);
               }}
             >
               <Shuffle className="h-3 w-3" strokeWidth={2} />
@@ -254,55 +259,47 @@ export default function App() {
                 className="min-w-[calc(100vw-20.6rem)] px-10 py-9 overflow-y-auto font-[family-name:var(--font-geist-sans)]"
               >
                 <SheetTitle>Example questions for inspiration</SheetTitle>
-                <SheetDescription>
-                  <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black text-base">
-                    <li>Your partner&apos;s nicknames?</li>
-                    <li>Birth place?</li>
-                    <li>Nice adjectives to describe your partner?</li>
-                    <li>
-                      Words reminding of your partner&apos;s adventurous
-                      moments?
-                    </li>
-                    <li>
-                      Words reminding of your partner&apos;s special moments?
-                    </li>
-                    <li>
-                      Words reminding of special moments shared by you two?
-                    </li>
-                    <li>
-                      Words reminding of your partner&apos;s embarrasing
-                      moments?
-                    </li>
-                    <li>Words reminding of your partner&apos;s dreams?</li>
-                    <li>Words reminding of your inside jokes?</li>
-                    <li>Go-to drink?</li>
-                    <li>
-                      Where did your partner go for high school or college?
-                    </li>
-                    <li>
-                      Words reminding of your partner&apos;s favorite
-                      monthly/annual activies?
-                    </li>
-                    <li>Quirky words your partner uses?</li>
-                    <li>A song you loving jamming together?</li>
-                    <li>Favourite snacks or dishes or street food?</li>
-                    <li>Where did you first meet?</li>
-                    <li>Pet&apos;s name?</li>
-                    <li>Kinds of animals they adore?</li>
-                    <li>Son&apos;s and/or daughter&apos;s name/nickname?</li>
-                    <li>Where did you go or plan to go for honeymoon?</li>
-                    <li>Favorite childhood cartoon character?</li>
-                    <li>Words related to their favourite subject/topic?</li>
-                    <li>First dream job?</li>
-                    <li>Favorite color?</li>
-                    <li>Favorite season?</li>
-                    <li>Favorite sports?</li>
-                    <li>Favorite books/movies/shows/songs/games?</li>
-                    <li>Favorite bands/artists?</li>
-                    <li>Favorite clothing/shoe/tech brands?</li>
-                    <li>Dream car?</li>
-                  </ul>
-                </SheetDescription>
+                <ul className="marker:text-gray-500 ml-4 mt-4 list-disc marker:font-bold space-y-2 text-black text-base">
+                  <li>Your partner&apos;s nicknames?</li>
+                  <li>Birth place?</li>
+                  <li>Nice adjectives to describe your partner?</li>
+                  <li>
+                    Words reminding of your partner&apos;s adventurous moments?
+                  </li>
+                  <li>
+                    Words reminding of your partner&apos;s special moments?
+                  </li>
+                  <li>Words reminding of special moments shared by you two?</li>
+                  <li>
+                    Words reminding of your partner&apos;s embarrasing moments?
+                  </li>
+                  <li>Words reminding of your partner&apos;s dreams?</li>
+                  <li>Words reminding of your inside jokes?</li>
+                  <li>Go-to drink?</li>
+                  <li>Where did your partner go for high school or college?</li>
+                  <li>
+                    Words reminding of your partner&apos;s favorite
+                    monthly/annual activies?
+                  </li>
+                  <li>Quirky words your partner uses?</li>
+                  <li>A song you loving jamming together?</li>
+                  <li>Favourite snacks or dishes or street food?</li>
+                  <li>Where did you first meet?</li>
+                  <li>Pet&apos;s name?</li>
+                  <li>Kinds of animals they adore?</li>
+                  <li>Son&apos;s and/or daughter&apos;s name/nickname?</li>
+                  <li>Where did you go or plan to go for honeymoon?</li>
+                  <li>Favorite childhood cartoon character?</li>
+                  <li>Words related to their favourite subject/topic?</li>
+                  <li>First dream job?</li>
+                  <li>Favorite color?</li>
+                  <li>Favorite season?</li>
+                  <li>Favorite sports?</li>
+                  <li>Favorite books/movies/shows/songs/games?</li>
+                  <li>Favorite bands/artists?</li>
+                  <li>Favorite clothing/shoe/tech brands?</li>
+                  <li>Dream car?</li>
+                </ul>
               </SheetContent>
             </Sheet>
           </div>
@@ -346,6 +343,9 @@ export default function App() {
                       <Download className="h-3 w-3" strokeWidth={2} />
                     </Button>
                   </DialogTrigger>
+                  <VisuallyHidden>
+                    <DialogTitle></DialogTitle>
+                  </VisuallyHidden>
                   <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
                     <p>Your Wordamour has been downloaded!</p>
                     <p>
@@ -386,7 +386,7 @@ export default function App() {
               </div>
               <div className="flex justify-center">
                 {wordSearchObj ? (
-                  <table className="text-sm">
+                  <table className="text-sm" key={animatedTableRenderKey}>
                     <tbody>
                       {wordSearchObj.grid.length > 0 &&
                         wordSearchObj.grid.map((row, rowIndex) => (
@@ -674,6 +674,9 @@ export default function App() {
                   See example questions for inspiration
                 </span>
               </DialogTrigger>
+              <VisuallyHidden>
+                <DialogTitle></DialogTitle>
+              </VisuallyHidden>
               <DialogContent
                 onPointerDownOutside={(e) => e.preventDefault()}
                 onInteractOutside={(e) => e.preventDefault()}
@@ -836,6 +839,9 @@ export default function App() {
                     Download
                   </Button>
                 </DialogTrigger>
+                <VisuallyHidden>
+                  <DialogTitle></DialogTitle>
+                </VisuallyHidden>
                 <DialogContent className="w-[calc(100vw-5rem)] rounded-xl font-[family-name:var(--font-geist-sans)]">
                   <p>Your Wordamour has been downloaded!</p>
                   <p>
