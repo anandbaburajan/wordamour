@@ -101,9 +101,18 @@ export default function Home() {
                     <li>25+ questions to help you come up with words</li>
                     <li>Beautiful, high-quality PDF (A4/A5/Letter) download</li>
                     <li>No sign-up required</li>
-                    <li>Your data never leaves your browser</li>
                     <li>
-                      Free (you can{" "}
+                      Your data{" "}
+                      <Link
+                        href="https://github.com/anandbaburajan/wordamour/"
+                        className="underline underline-offset-4"
+                      >
+                        never
+                      </Link>{" "}
+                      leaves your browser
+                    </li>
+                    <li>
+                      Free (
                       <Link
                         href="https://www.buymeacoffee.com/anandbaburajan"
                         className="underline underline-offset-4"
@@ -186,7 +195,16 @@ export default function Home() {
                   <li>25+ questions to help you with words</li>
                   <li>Beautiful, high-quality PDF download</li>
                   <li>No sign-up required</li>
-                  <li>Your data never leaves your browser</li>
+                  <li>
+                    Your data{" "}
+                    <Link
+                      href="https://github.com/anandbaburajan/wordamour/"
+                      className="underline underline-offset-4"
+                    >
+                      never
+                    </Link>{" "}
+                    leaves your browser
+                  </li>
                   <li>
                     Free (
                     <Link

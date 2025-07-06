@@ -46,7 +46,15 @@ import WordSearch from "@blex41/word-search";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { format } from "date-fns";
 import dayjs from "dayjs";
-import { Coffee, Download, Flag, Mail, Shuffle } from "lucide-react";
+import {
+  Coffee,
+  Download,
+  Flag,
+  Mail,
+  Shuffle,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 import { Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -80,6 +88,8 @@ export default function App() {
   const [paperSize, setPaperSize] = useState("");
 
   const [uniqueCoords, setUniqueCoords] = useState([]);
+
+  const [wordsShown, setWordsShown] = useState(false);
 
   const popOverBigRef = useRef<HTMLButtonElement | null>(null);
 
@@ -370,6 +380,26 @@ export default function App() {
                   </DialogContent>
                 </Dialog>
               )}
+              <Button
+                className={`${
+                  wordSearchObj ? "" : "invisible"
+                } items-center bg-gray-600/10 h-4 w-4 p-4 rounded-lg hover:bg-gray-600/15 font-medium transition duration-200 shadow-none text-gray-700`}
+                onClick={() => {
+                  setUniqueCoords(getUniqueCoordinates(wordSearchObj.words));
+                  setWordsShown(!wordsShown);
+                }}
+              >
+                {!wordsShown && (
+                  <>
+                    <Eye className="h-3 w-3" strokeWidth={2} />
+                  </>
+                )}
+                {wordsShown && (
+                  <>
+                    <EyeOff className="h-5 w-5" strokeWidth={2} />
+                  </>
+                )}
+              </Button>
             </div>
             <div className="flex justify-center w-full h-screen bg-white flex-col items-center">
               <div className="flex justify-center mb-4">
@@ -395,14 +425,15 @@ export default function App() {
                               <td
                                 key={cellIndex}
                                 className={`${
+                                  wordsShown &&
                                   uniqueCoords.some(
                                     (coord) =>
                                       coord.x === cellIndex &&
                                       coord.y === rowIndex
                                   )
-                                    ? "text-gray-900"
-                                    : "unused-characters"
-                                } p-2`}
+                                    ? "bg-lime-300/50"
+                                    : ""
+                                } p-2 text-gray-900`}
                               >
                                 {cell}
                               </td>
