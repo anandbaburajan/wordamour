@@ -464,7 +464,7 @@ export default function App() {
                 >
                   <DropdownMenuItem>
                     <Link
-                      href="mailto:anand@wordamour.com"
+                      href="mailto:hi@anandbaburajan.com"
                       className="w-full h-full inline-flex items-center"
                     >
                       <Mail
