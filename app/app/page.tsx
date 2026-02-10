@@ -1,7 +1,6 @@
 "use client";
 
 import MeshGradientBackground from "@/components/gradient";
-import LogoPlain from "@/components/logo-plain";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -357,25 +356,20 @@ export default function App() {
                     <DialogTitle></DialogTitle>
                   </VisuallyHidden>
                   <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
-                    <p>Your Wordamour has been downloaded!</p>
+                    <p>Your Wordamour is ready!</p>
                     <p>
-                      Next, print the two pages — the first one with the word
-                      search puzzle and the second one with the solutions.
+                      Print both pages — gift the puzzle to your partner and
+                      keep the solutions to yourself.
                     </p>
                     <p>
-                      If Wordamour brings a smile to your partner&apos;s face,
-                      consider{" "}
+                      If you&apos;d like to support this project, consider{" "}
                       <Link
                         href="https://www.buymeacoffee.com/anandbaburajan"
-                        className="underline underline-offset-4 inline-flex items-center"
+                        className="underline underline-offset-4"
                       >
                         buying me a coffee
-                        <LogoPlain
-                          className="w-[1rem] ml-1.5"
-                          color="#EF4444"
-                          opacity="100%"
-                        />
-                      </Link>
+                      </Link>{" "}
+                      and share Wordamour with your friends!
                     </p>
                   </DialogContent>
                 </Dialog>
@@ -874,25 +868,20 @@ export default function App() {
                   <DialogTitle></DialogTitle>
                 </VisuallyHidden>
                 <DialogContent className="w-[calc(100vw-5rem)] rounded-xl font-[family-name:var(--font-geist-sans)]">
-                  <p>Your Wordamour has been downloaded!</p>
+                  <p>Your Wordamour is ready!</p>
                   <p>
-                    Next, print the two pages — the first one with the word
-                    search puzzle and the second one with the solutions.
+                    Print both pages — gift the puzzle to your partner and
+                    keep the solutions to yourself.
                   </p>
                   <p>
-                    If Wordamour brings a smile to your partner&apos;s face,
-                    consider{" "}
+                    If you&apos;d like to support this project, consider{" "}
                     <Link
                       href="https://www.buymeacoffee.com/anandbaburajan"
-                      className="underline underline-offset-4 inline-flex items-center"
+                      className="underline underline-offset-4"
                     >
                       buying me a coffee
-                      <LogoPlain
-                        className="w-[1rem] ml-1.5"
-                        color="#EF4444"
-                        opacity="100%"
-                      />
-                    </Link>
+                    </Link>{" "}
+                    and share Wordamour with your friends!
                   </p>
                 </DialogContent>
               </Dialog>
