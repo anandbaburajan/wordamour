@@ -35,7 +35,11 @@ export default function Home() {
       <MeshGradientBackground />
       <div className="flex flex-row justify-between items-center w-full h-[2rem] z-50">
         <Link href="/">
-          <LogoPlain className="w-[1.3rem]" color="#000" opacity="80%" />
+          <span
+            className={`${DMSerifDisplay.className} text-3xl italic text-black/60`}
+          >
+            Wordamour
+          </span>
         </Link>
         <div className="flex flex-row items-center">
           <Link
@@ -57,23 +61,15 @@ export default function Home() {
           <h1
             className={`${instrumentSerif.className} text-6xl text-black leading-[1.05]`}
           >
-            Surprise your <br />
-            special someone
-            <br />
-            with a{" "}
-            <span
-              className={`${DMSerifDisplay.className} italic text-black/60`}
-            >
-              Wordamour
-            </span>
+            Turn your love story <br />
+            into a puzzle
           </h1>
           <h3
             className={`flex font-normal text-xl text-black/40 mt-6 w-[36rem]`}
           >
-            Turn your cherished words into a beautiful, printed word search
-            puzzle. Choose sweet nicknames, inside jokes, and treasured memories
-            that mean the most to you both. A thoughtful gift that&apos;s
-            uniquely yours.
+            Choose sweet nicknames, inside jokes, and treasured memories that
+            mean the most to you both. A thoughtful gift that&apos;s uniquely
+            yours.
           </h3>
           <div className={`flex mt-8 items-center space-x-8`}>
             <div>
@@ -154,26 +150,19 @@ export default function Home() {
         <h1
           className={`${instrumentSerif.className} text-[2.6rem] text-black mt-20 leading-[1.05]`}
         >
-          Surprise your
+          Turn your love story
           <br />
-          special someone
-          <br />
-          with a{" "}
-          <span className={`${DMSerifDisplay.className} italic text-black/60`}>
-            Wordamour
-          </span>
+          into a puzzle
         </h1>
         <h3 className={`flex font-normal text-lg text-black/40 my-6 leading-6`}>
-          Turn your cherished words into a beautiful, printed word search
-          puzzle. Choose sweet nicknames, inside jokes, and treasured memories
-          that mean the most to you both. A thoughtful gift that&apos;s uniquely
-          yours.
+          Choose sweet nicknames, inside jokes, and treasured memories that mean
+          the most to you both. A thoughtful gift that&apos;s uniquely yours.
         </h3>
         <div className={`flex mt-8 items-center space-x-8`}>
           <div>
             <Link href="/app" className="h-fit w-fit">
               <Button className="text-base font-medium relative border border-[transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-neutral-900 hover:opacity-90 transition-all duration-150 ease-in-out flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#ff5858] to-[#f09819] px-4 py-2 text-white shadow-inner before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:shadow-[0px_2px_0.4px_0px_rgba(255,_255,_255,_0.16)_inset] hover:shadow-none">
-                Go to app — it&apos;s free
+                Create yours — it&apos;s free
               </Button>
             </Link>
           </div>
