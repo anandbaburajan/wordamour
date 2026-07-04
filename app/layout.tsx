@@ -18,13 +18,13 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Wordamour — Personalised word search puzzle for your special someone",
   description:
-    "Turn your cherished words into a beautiful, printed word search puzzle. Choose sweet nicknames, inside jokes, and treasured memories that mean the most to you both. A thoughtful gift that's uniquely yours.",
+    "Create a printable word search puzzle using your nicknames, inside jokes, memories, and favorite little details. A thoughtful gift that's uniquely yours.",
   metadataBase: new URL("https://wordamour.com"),
   openGraph: {
     title:
       "Wordamour — Personalised word search puzzle for your special someone",
     description:
-      "Turn your cherished words into a beautiful, printed word search puzzle. Choose sweet nicknames, inside jokes, and treasured memories that mean the most to you both. A thoughtful gift that's uniquely yours.",
+      "Create a printable word search puzzle using your nicknames, inside jokes, memories, and favorite little details. A thoughtful gift that's uniquely yours.",
     url: "https://wordamour.com",
     siteName: "Wordamour",
     locale: "en_US",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title:
       "Wordamour — Personalised word search puzzle for your special someone",
     description:
-      "Turn your cherished words into a beautiful, printed word search puzzle. Choose sweet nicknames, inside jokes, and treasured memories that mean the most to you both. A thoughtful gift that's uniquely yours.",
+      "Create a printable word search puzzle using your nicknames, inside jokes, memories, and favorite little details. A thoughtful gift that's uniquely yours.",
     site: "@wordamour_com",
     images: "https://wordamour.com/meta.png",
   },

@@ -358,8 +358,9 @@ export default function App() {
                   <DialogContent className="p-12 w-auto font-[family-name:var(--font-geist-sans)]">
                     <p>Your Wordamour is ready!</p>
                     <p>
-                      Print both pages — gift the puzzle to your partner and
-                      keep the solutions to yourself.
+                      Print both pages. Give the puzzle to your partner, and
+                      keep the solution sheet nearby for hints when they need a
+                      little help.
                     </p>
                     <p>
                       If you&apos;d like to support this project, consider{" "}
@@ -369,7 +370,7 @@ export default function App() {
                       >
                         buying me a coffee
                       </Link>{" "}
-                      and share Wordamour with your friends!
+                      or share Wordamour with your friends!
                     </p>
                   </DialogContent>
                 </Dialog>
@@ -870,8 +871,9 @@ export default function App() {
                 <DialogContent className="w-[calc(100vw-5rem)] rounded-xl font-[family-name:var(--font-geist-sans)]">
                   <p>Your Wordamour is ready!</p>
                   <p>
-                    Print both pages — gift the puzzle to your partner and
-                    keep the solutions to yourself.
+                    Print both pages. Give the puzzle to your partner, and keep
+                    the solution sheet nearby for hints when they need a little
+                    help.
                   </p>
                   <p>
                     If you&apos;d like to support this project, consider{" "}
@@ -881,7 +883,7 @@ export default function App() {
                     >
                       buying me a coffee
                     </Link>{" "}
-                    and share Wordamour with your friends!
+                    or share Wordamour with your friends!
                   </p>
                 </DialogContent>
               </Dialog>

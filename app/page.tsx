@@ -67,9 +67,9 @@ export default function Home() {
           <h3
             className={`flex font-normal text-xl text-black/40 mt-6 w-[36rem]`}
           >
-            Choose sweet nicknames, inside jokes, and treasured memories that
-            mean the most to you both. A thoughtful gift that&apos;s uniquely
-            yours.
+            Create a printable word search puzzle using your nicknames, inside
+            jokes, memories, and favorite little details. A thoughtful gift
+            that&apos;s uniquely yours.
           </h3>
           <div className={`flex mt-8 items-center space-x-8`}>
             <div>
@@ -155,8 +155,9 @@ export default function Home() {
           into a puzzle
         </h1>
         <h3 className={`flex font-normal text-lg text-black/40 my-6 leading-6`}>
-          Choose sweet nicknames, inside jokes, and treasured memories that mean
-          the most to you both. A thoughtful gift that&apos;s uniquely yours.
+          Create a printable word search puzzle using your nicknames, inside
+          jokes, memories, and favorite little details. A thoughtful gift
+          that&apos;s uniquely yours.
         </h3>
         <div className={`flex mt-8 items-center space-x-8`}>
           <div>
