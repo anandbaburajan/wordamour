@@ -99,7 +99,7 @@ export default function Home() {
                     <li>No sign-up required</li>
                     <li>Your data never leaves your browser</li>
                     <li>
-                      Free (
+                      Completely free (
                       <Link
                         href="https://www.buymeacoffee.com/anandbaburajan"
                         className="underline underline-offset-4"
@@ -178,7 +178,7 @@ export default function Home() {
                   <li>No sign-up required</li>
                   <li>Your data never leaves your browser</li>
                   <li>
-                    Free (
+                    Completely free (
                     <Link
                       href="https://www.buymeacoffee.com/anandbaburajan"
                       className="underline underline-offset-4"
