@@ -359,8 +359,7 @@ export default function App() {
                     <p>Your Wordamour is ready!</p>
                     <p>
                       Print both pages. Give the puzzle to your partner, and
-                      keep the solution sheet nearby for hints when they need a
-                      little help.
+                      keep the solution sheet with you to give them hints.
                     </p>
                     <p>
                       If you&apos;d like to support this project, consider{" "}
@@ -872,8 +871,7 @@ export default function App() {
                   <p>Your Wordamour is ready!</p>
                   <p>
                     Print both pages. Give the puzzle to your partner, and keep
-                    the solution sheet nearby for hints when they need a little
-                    help.
+                    the solution sheet with you to give them hints.
                   </p>
                   <p>
                     If you&apos;d like to support this project, consider{" "}
