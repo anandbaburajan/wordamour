@@ -1,6 +1,4 @@
 import MeshGradientBackground from "@/components/gradient";
-import InstaWarning from "@/components/insta-warning";
-import LogoPlain from "@/components/logo-plain";
 import Testimonial from "@/components/testimonial";
 import { Button } from "@/components/ui/button";
 import {
@@ -55,7 +53,6 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <InstaWarning />
       <div className="hidden lg:flex flex-row justify-center items-center h-[calc(100vh-5rem)]">
         <div className="flex flex-col w-[50rem] ml-[11rem] mr-[5rem]">
           <h1

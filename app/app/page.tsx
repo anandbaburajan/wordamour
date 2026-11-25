@@ -1,6 +1,7 @@
 "use client";
 
 import MeshGradientBackground from "@/components/gradient";
+import InstaWarning from "@/components/insta-warning";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -141,6 +142,7 @@ export default function App() {
 
   return (
     <div className="h-[100dvh] overflow-x-hidden overflow-y-hidden font-[family-name:var(--font-geist-sans)]">
+      <InstaWarning />
       <main className="hidden lg:flex flex-row h-full">
         <div className="flex flex-col justify-between w-[20.6rem] border-gray-200 relative">
           <MeshGradientBackground />
