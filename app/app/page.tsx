@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/sheet";
 
 import { Toaster } from "@/components/ui/sonner";
-import { Textarea } from "@/components/ui/textarea";
+import { WordsInput } from "@/components/words-input";
 import { cn } from "@/lib/utils";
 // @ts-expect-error no types
 import WordSearch from "@blex41/word-search";
@@ -69,11 +69,10 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export default function App() {
-  const [wordsList, setWordsList] = useState("");
-
-  const handleWordsListChange = (event) => {
-    setWordsList(event.target.value);
-  };
+  const [wordTags, setWordTags] = useState<string[]>([]);
+  const [wordInput, setWordInput] = useState("");
+  // Include the unfinished word when generating or downloading immediately.
+  const words = [...wordTags, ...wordInput.split(/[,\s]+/).filter(Boolean)];
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -149,7 +148,7 @@ export default function App() {
           <div className="flex flex-col p-10 h-full w-full absolute">
             <Input
               className="flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
-              placeholder="Title"
+              placeholder="Title (e.g. Alex & Riley)"
               onChange={handleTitleChange}
               autoFocus={true}
             />
@@ -199,20 +198,15 @@ export default function App() {
             </Select>
           </div>
           <div className="p-10 flex flex-col w-full absolute bottom-0">
-            <Textarea
-              value={wordsList}
-              onChange={handleWordsListChange}
-              className="h-[20rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
-              placeholder="Words (one per line)"
+            <WordsInput
+              value={wordTags}
+              onValueChange={setWordTags}
+              inputValue={wordInput}
+              onInputValueChange={setWordInput}
             />
             <Button
               className="mb-10 bg-[#008A00] hover:bg-[#339833] rounded-lg h-4 w-4 p-4 shadow-none text-white"
               onClick={() => {
-                const words = wordsList
-                  .split(/\r?\n/)
-                  .filter((e) => e !== "")
-                  .map((e) => e.replace(/\s+/g, ""));
-
                 if (words.length === 0) {
                   toast.info("Please enter some words.");
                   return;
@@ -624,11 +618,11 @@ export default function App() {
       </main>
       <main className="flex lg:hidden h-full flex-col w-full">
         <MeshGradientBackground />
-        <div className="flex flex-col min-h-full p-10 justify-between border-gray-200">
-          <div className="flex flex-col h-full w-full">
+        <div className="flex h-full shrink-0 flex-col justify-between overflow-y-auto border-gray-200 p-10">
+          <div className="flex shrink-0 flex-col w-full">
             <Input
               className="flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
-              placeholder="Title"
+              placeholder="Title (e.g. Alex & Riley)"
               onChange={handleTitleChange}
             />
             <Popover>
@@ -687,12 +681,12 @@ export default function App() {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex flex-col w-full">
-            <Textarea
-              value={wordsList}
-              onChange={handleWordsListChange}
-              className="h-[20rem] resize-none flex mb-4 backdrop-blur-2xl bg-gray-400/10 hover:bg-gray-400/15 focus:bg-gray-400/15 transition duration-200 focus-visible:ring-0 font-medium shadow-none border-none placeholder:text-gray-500 placeholder:font-medium"
-              placeholder="Words (one per line)"
+          <div className="flex shrink-0 flex-col w-full">
+            <WordsInput
+              value={wordTags}
+              onValueChange={setWordTags}
+              inputValue={wordInput}
+              onInputValueChange={setWordInput}
             />
             <Dialog modal={false}>
               <DialogClose ref={dialogSmallRef}></DialogClose>
@@ -763,24 +757,10 @@ export default function App() {
             {!title ||
             !puzzleDate ||
             !paperSize ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, "")).length === 0 ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, ""))
-              .some((word) => word.length === 1) ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, ""))
-              .some((word) => !/^[a-zA-Z]+$/.test(word)) ||
-            wordsList
-              .split(/\r?\n/)
-              .filter((e) => e !== "")
-              .map((e) => e.replace(/\s+/g, "")).length > 32 ? (
+            words.length === 0 ||
+            words.some((word) => word.length === 1) ||
+            words.some((word) => !/^[a-zA-Z]+$/.test(word)) ||
+            words.length > 32 ? (
               <Button
                 onClick={() => {
                   if (!title) {
@@ -797,11 +777,6 @@ export default function App() {
                     toast.info("Please set the paper size.");
                     return;
                   }
-
-                  const words = wordsList
-                    .split(/\r?\n/)
-                    .filter((e) => e !== "")
-                    .map((e) => e.replace(/\s+/g, ""));
 
                   if (words.length === 0) {
                     toast.info("Please enter some words.");
@@ -833,11 +808,6 @@ export default function App() {
                   <Button
                     id="download-pdf-mobile"
                     onClick={() => {
-                      const words = wordsList
-                        .split(/\r?\n/)
-                        .filter((e) => e !== "")
-                        .map((e) => e.replace(/\s+/g, ""));
-
                       dialogSmallRef.current?.click();
 
                       const wsOptions = {
